@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SURYAMIT Team Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column of stacked boards — owners, 5-hour swimlane, dependency graph, handoff contracts, rules. */
+:root {
+  --bg: #F5F8F4;
+  --surface: #FFFFFF;
+  --surface-2: #E9F2EB;
+  --fg: #12261B;
+  --muted: #56695D;
+  --line: #D3DFD6;
+  --forest: #1F5C3A;
+  --solar: #3FA34D;
+  --sun: #D9A21B;
+  --m1: #1F5C3A; --m1-soft: #DCEEE2;
+  --m2: #22739A; --m2-soft: #DCEBF3;
+  --m3: #A8650A; --m3-soft: #F6E8D2;
+  --m4: #6E46A8; --m4-soft: #EAE2F5;
+  --ok: #2F8A44; --warn: #B7791F; --chain: #8A5A9E;
+  --font-display: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1712; --surface: #15211A; --surface-2: #1B2B21; --fg: #E4EFE7; --muted: #9DB2A4; --line: #2A3D31;
+    --forest: #6CC28A; --solar: #6CC28A; --sun: #E9BE4F;
+    --m1: #74C892; --m1-soft: #1E3628;
+    --m2: #6BB7DB; --m2-soft: #17303D;
+    --m3: #E3A64B; --m3-soft: #3A2C16;
+    --m4: #B595E6; --m4-soft: #2D2340;
+    --ok: #6CC28A; --warn: #E3A64B; --chain: #C79BDB;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1712; --surface: #15211A; --surface-2: #1B2B21; --fg: #E4EFE7; --muted: #9DB2A4; --line: #2A3D31;
+  --forest: #6CC28A; --solar: #6CC28A; --sun: #E9BE4F;
+  --m1: #74C892; --m1-soft: #1E3628;
+  --m2: #6BB7DB; --m2-soft: #17303D;
+  --m3: #E3A64B; --m3-soft: #3A2C16;
+  --m4: #B595E6; --m4-soft: #2D2340;
+  --ok: #6CC28A; --warn: #E3A64B; --chain: #C79BDB;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.25rem; font-weight: 650; letter-spacing: -0.01em; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.section-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.section-head p { color: var(--muted); }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+
+/* header */
+header { display: flex; flex-direction: column; gap: 12px; }
+.sun-rule { height: 4px; width: 72px; border-radius: 2px; background: linear-gradient(90deg, var(--sun), var(--solar)); }
+.lede { color: var(--muted); font-size: 1.02rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.9rem; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* filter */
+.filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filter span { font-size: 0.85rem; color: var(--muted); margin-right: 4px; }
+.filter button {
+  font: inherit; font-size: 0.86rem; cursor: pointer; border-radius: 999px; padding: 6px 14px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+}
+.filter button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filter button:focus-visible, .spec:focus-visible { outline: 2px solid var(--solar); outline-offset: 2px; }
+
+/* members */
+.members { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.member {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px;
+  display: flex; flex-direction: column; gap: 12px; min-width: 0; border-top: 4px solid var(--c);
+  transition: opacity .15s;
+}
+.member .who { display: flex; flex-direction: column; gap: 2px; }
+.member .role { color: var(--muted); font-size: 0.88rem; }
+.member ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+.member .label { font-size: 0.74rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.speclist { display: flex; flex-direction: column; gap: 6px; }
+.spec {
+  display: flex; gap: 8px; align-items: baseline; padding: 7px 10px; border-radius: 7px;
+  background: var(--soft); color: var(--fg); font-size: 0.9rem; min-width: 0;
+}
+.spec .id { font-family: var(--font-mono); font-weight: 500; color: var(--c); flex: none; }
+.spec .nm { flex: 1; min-width: 0; }
+.tag { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 4px; flex: none; border: 1px solid currentColor; }
+.tag.solo { color: var(--ok); }
+.tag.found { color: var(--warn); }
+.tag.chain { color: var(--chain); }
+.m1 { --c: var(--m1); --soft: var(--m1-soft); }
+.m2 { --c: var(--m2); --soft: var(--m2-soft); }
+.m3 { --c: var(--m3); --soft: var(--m3-soft); }
+.m4 { --c: var(--m4); --soft: var(--m4-soft); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 0.86rem; color: var(--muted); margin-top: 14px; }
+.legend div { display: flex; gap: 8px; align-items: center; }
+
+/* timeline */
+.scroller { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.lanes { display: grid; grid-template-columns: 150px repeat(6, minmax(150px, 1fr)); min-width: 1060px; }
+.lanes > div { padding: 10px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); font-size: 0.84rem; }
+.lanes > div:nth-child(7n) { border-right: none; }
+.lanes .ph { background: var(--surface-2); font-weight: 600; display: flex; flex-direction: column; gap: 2px; }
+.lanes .ph .t { font-family: var(--font-mono); font-weight: 400; color: var(--muted); font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+.lanes .rowh { font-weight: 600; display: flex; flex-direction: column; gap: 2px; border-left: 4px solid var(--c); }
+.lanes .rowh small { color: var(--muted); font-weight: 400; }
+.cell { display: flex; flex-direction: column; gap: 6px; transition: opacity .15s; }
+.blk { background: var(--soft); border-radius: 6px; padding: 6px 8px; line-height: 1.35; }
+.blk b { font-family: var(--font-mono); font-weight: 500; color: var(--c); margin-right: 4px; }
+.blk.gate { background: transparent; border: 1px dashed var(--c); }
+.lanes .last > div { border-bottom: none; }
+
+/* graph */
+.graph { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+.graph pre { margin: 0; }
+
+/* handoffs */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.88rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--surface-2); font-weight: 600; font-size: 0.8rem; }
+tr:last-child td { border-bottom: none; }
+td.when { font-family: var(--font-mono); font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 0.78rem; padding: 2px 7px; border-radius: 5px; background: var(--soft); color: var(--c); white-space: nowrap; }
+.arrow { color: var(--muted); margin: 0 4px; }
+tr { transition: opacity .15s; }
+
+/* rules */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.rule { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.rule p { color: var(--muted); font-size: 0.9rem; }
+
+/* filtering */
+body[data-focus] [data-m]:not(.on) { opacity: 0.28; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="sun-rule" aria-hidden="true"></div>
+    <span class="eyebrow">SELC Hackathon · 4 people · 5 hours</span>
+    <h1>SURYAMIT Team Board</h1>
+    <p class="lede">Who owns which Spec Kit feature, what each person can build alone from minute one, and the exact points where two people have to connect their work.</p>
+    <div class="facts">
+      <div><b>11</b> feature specs</div>
+      <div><b>7</b> P0 · <b>4</b> P1</div>
+      <div><b>12</b> handoff points</div>
+      <div>Specs live in <code>specs/NNN-*/</code></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Owners</span>
+      <h2>Member-wise spec assignment</h2>
+      <p>Each person owns whole spec folders, so every <code>spec.md</code>, <code>plan.md</code> and <code>tasks.md</code> has one owner. Pick a member to highlight their work across the board.</p>
+    </div>
+    <div class="filter" role="group" aria-label="Highlight a member">
+      <span>Highlight:</span>
+      <button type="button" id="f-all" data-f="" aria-pressed="true">Everyone</button>
+      <button type="button" id="f-m1" data-f="m1" aria-pressed="false">Member 1</button>
+      <button type="button" id="f-m2" data-f="m2" aria-pressed="false">Member 2</button>
+      <button type="button" id="f-m3" data-f="m3" aria-pressed="false">Member 3</button>
+      <button type="button" id="f-m4" data-f="m4" aria-pressed="false">Member 4</button>
+    </div>
+    <div style="height:14px"></div>
+    <div class="members">
+      <article class="member m1" data-m="m1">
+        <div class="who"><h3>Member 1</h3><span class="role">Architect and integrator</span></div>
+        <div class="speclist">
+          <div class="spec"><span class="id">001</span><span class="nm">Foundation and auth</span><span class="tag solo">solo</span></div>
+          <div class="spec"><span class="id">003</span><span class="nm">Solar financial engine</span><span class="tag solo">solo</span></div>
+          <div class="spec"><span class="id">007</span><span class="nm">Quote acceptance</span><span class="tag chain">chained</span></div>
+        </div>
+        <span class="label">Starts alone with</span>
+        <ul><li>Project scaffold, Supabase clients, API envelope, auth guard</li><li>Subsidy, net cost and payback functions with unit tests (no DB needed)</li></ul>
+        <span class="label">Also owns</span>
+        <ul><li><code>docs/project-overview.md</code> contracts</li><li>Final P0 end-to-end test, deploy, demo flow</li></ul>
+      </article>
+      <article class="member m2" data-m="m2">
+        <div class="who"><h3>Member 2</h3><span class="role">Household experience</span></div>
+        <div class="speclist">
+          <div class="spec"><span class="id">002</span><span class="nm">Household solar request</span><span class="tag found">needs 001</span></div>
+          <div class="spec"><span class="id">006</span><span class="nm">Quote comparison and scoring</span><span class="tag chain">chained</span></div>
+        </div>
+        <span class="label">Starts alone with</span>
+        <ul><li>Wizard screens (map pin, photo, usage, review) on mock JSON</li><li>Scoring functions in <code>src/lib/domain/quotes/</code> with fixture quotes</li></ul>
+        <span class="label">Hosts plug-ins from others</span>
+        <ul><li>Estimate card (003), roof panel (008), mic button (010), advisor (011), Accept button (007)</li></ul>
+      </article>
+      <article class="member m3" data-m="m3">
+        <div class="who"><h3>Member 3</h3><span class="role">Vendor marketplace</span></div>
+        <div class="speclist">
+          <div class="spec"><span class="id">004</span><span class="nm">Vendor request discovery</span><span class="tag found">needs 001</span></div>
+          <div class="spec"><span class="id">005</span><span class="nm">Vendor quote submission</span><span class="tag chain">chained</span></div>
+        </div>
+        <span class="label">Starts alone with</span>
+        <ul><li>SQL migrations, RLS and privacy functions from both <code>data-model.md</code> files</li><li>Seed: published Sharma request and 3 demo vendor quotes</li></ul>
+        <span class="label">Hands off</span>
+        <ul><li><code>quotes</code> table and seed to Member 2 for comparison</li></ul>
+      </article>
+      <article class="member m4" data-m="m4">
+        <div class="who"><h3>Member 4</h3><span class="role">AI intelligence</span></div>
+        <div class="speclist">
+          <div class="spec"><span class="id">008</span><span class="nm">Roof photo analysis + AI client</span><span class="tag solo">solo</span></div>
+          <div class="spec"><span class="id">010</span><span class="nm">Voice requirement entry</span><span class="tag chain">chained</span></div>
+          <div class="spec"><span class="id">009</span><span class="nm">Quote extraction and injection defense</span><span class="tag chain">chained</span></div>
+          <div class="spec"><span class="id">011</span><span class="nm">AI solar advisor</span><span class="tag chain">chained</span></div>
+        </div>
+        <span class="label">Starts alone with</span>
+        <ul><li>Shared AI client in <code>src/lib/ai/</code> with a mocked provider</li><li>Prompts and output schemas, injection fixture, number parser</li></ul>
+        <span class="label">Rule</span>
+        <ul><li>Never blocks P0: every AI screen has a manual fallback</li></ul>
+      </article>
+    </div>
+    <div class="legend">
+      <div><span class="tag solo">solo</span> buildable from minute one with mocks</div>
+      <div><span class="tag found">needs 001</span> waits only for the foundation scaffold</div>
+      <div><span class="tag chain">chained</span> needs another spec's data or screen</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Schedule</span>
+      <h2>Five-hour swimlanes</h2>
+      <p>Phases follow the build schedule in <code>project-plan.md</code> §15. Dashed blocks are integration gates where two members must meet. On phones, scroll the board sideways.</p>
+    </div>
+    <div class="scroller">
+      <div class="lanes">
+        <div class="ph">Member</div>
+        <div class="ph">Setup<span class="t">00:00–00:30</span></div>
+        <div class="ph">Foundation<span class="t">00:30–01:30</span></div>
+        <div class="ph">Marketplace<span class="t">01:30–02:30</span></div>
+        <div class="ph">Intelligence<span class="t">02:30–03:30</span></div>
+        <div class="ph">Integration<span class="t">03:30–04:30</span></div>
+        <div class="ph">Demo freeze<span class="t">04:30–05:00</span></div>
+
+        <div class="rowh m1">Member 1<small>Architect</small></div>
+        <div class="cell m1" data-m="m1"><div class="blk"><b>001</b>Scaffold, env template, envelope, auth guard</div><div class="blk gate">Gate: everyone pulls the scaffold</div></div>
+        <div class="cell m1" data-m="m1"><div class="blk"><b>001</b>Auth, roles, demo accounts, RLS base</div><div class="blk"><b>003</b>Financial functions + tests</div></div>
+        <div class="cell m1" data-m="m1"><div class="blk"><b>003</b>Rules page, estimate API, estimate card</div><div class="blk gate">Gate: estimate card → Member 2</div></div>
+        <div class="cell m1" data-m="m1"><div class="blk"><b>007</b>Atomic accept function, confirm dialog, status cascade</div></div>
+        <div class="cell m1" data-m="m1"><div class="blk"><b>007</b>Double-accept test, contact reveal</div><div class="blk gate">Gate: P0 end-to-end test</div></div>
+        <div class="cell m1" data-m="m1"><div class="blk">Deploy, run demo script</div></div>
+
+        <div class="rowh m2">Member 2<small>Household</small></div>
+        <div class="cell m2" data-m="m2"><div class="blk"><b>002</b>Wizard screens on mock JSON</div></div>
+        <div class="cell m2" data-m="m2"><div class="blk"><b>002</b>Requests table, photo upload, publish</div><div class="blk gate">Gate: published request → Member 3</div></div>
+        <div class="cell m2" data-m="m2"><div class="blk"><b>002</b>Household dashboard</div><div class="blk"><b>006</b>Scoring functions + tests</div></div>
+        <div class="cell m2" data-m="m2"><div class="blk"><b>006</b>Quote list, comparison UI, score breakdown</div><div class="blk gate">Gate: plug in 003 card, 008 panel, 010 mic</div></div>
+        <div class="cell m2" data-m="m2"><div class="blk">Loading, empty, error states; mobile polish</div><div class="blk gate">Gate: Accept button (007)</div></div>
+        <div class="cell m2" data-m="m2"><div class="blk">Household demo rehearsal</div></div>
+
+        <div class="rowh m3">Member 3<small>Vendor</small></div>
+        <div class="cell m3" data-m="m3"><div class="blk"><b>004</b><b>005</b>Migrations, RLS, privacy functions</div></div>
+        <div class="cell m3" data-m="m3"><div class="blk"><b>004</b>Open request list, filters, privacy-safe detail</div></div>
+        <div class="cell m3" data-m="m3"><div class="blk"><b>004</b>Vendor map</div><div class="blk"><b>005</b>Quote form, submit</div><div class="blk gate">Gate: quotes → Member 2</div></div>
+        <div class="cell m3" data-m="m3"><div class="blk"><b>005</b>Withdraw, quote history, seed 3 demo quotes</div></div>
+        <div class="cell m3" data-m="m3"><div class="blk">RLS and privacy tests</div><div class="blk gate">Gate: 009 pre-fill in quote form</div></div>
+        <div class="cell m3" data-m="m3"><div class="blk">Vendor demo rehearsal</div></div>
+
+        <div class="rowh m4">Member 4<small>AI</small></div>
+        <div class="cell m4" data-m="m4"><div class="blk"><b>008</b>AI client interface, mocked provider</div></div>
+        <div class="cell m4" data-m="m4"><div class="blk"><b>008</b>Roof analyze endpoint, schemas, consent check</div></div>
+        <div class="cell m4" data-m="m4"><div class="blk"><b>010</b>Voice parse endpoint, mic control, number parser</div><div class="blk gate">Gate: roof panel → Member 2</div></div>
+        <div class="cell m4" data-m="m4"><div class="blk"><b>009</b>Quote extraction, injection fixture and test</div></div>
+        <div class="cell m4" data-m="m4"><div class="blk"><b>011</b>Advisor endpoint, fallback template</div></div>
+        <div class="cell m4" data-m="m4"><div class="blk">Run the injection demo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Dependencies</span>
+      <h2>How the specs connect</h2>
+      <p>Boxes are grouped by owner. An arrow means the second spec needs the first spec's data, screen or code. The P0 chain runs 001 → 002 → 004 → 005 → 006 → 007 and works with no AI.</p>
+    </div>
+    <div class="graph">
+<pre class="mermaid">
+flowchart LR
+  subgraph M1["Member 1 · Architect"]
+    F001["001 Foundation and auth"]
+    F003["003 Financial engine"]
+    F007["007 Quote acceptance"]
+  end
+  subgraph M2["Member 2 · Household"]
+    F002["002 Household request"]
+    F006["006 Comparison and scoring"]
+  end
+  subgraph M3["Member 3 · Vendor"]
+    F004["004 Vendor discovery"]
+    F005["005 Quote submission"]
+  end
+  subgraph M4["Member 4 · AI"]
+    F008["008 Roof analysis + AI client"]
+    F010["010 Voice entry"]
+    F009["009 Quote extraction"]
+    F011["011 AI advisor"]
+  end
+  F001 --> F002
+  F001 --> F003
+  F002 --> F004
+  F004 --> F005
+  F005 --> F006
+  F003 --> F006
+  F006 --> F007
+  F002 --> F008
+  F008 --> F010
+  F002 --> F010
+  F005 --> F009
+  F006 --> F009
+  F008 --> F009
+  F003 --> F011
+  F006 --> F011
+  F008 --> F011
+</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Connected work</span>
+      <h2>Handoff contracts</h2>
+      <p>These are the only places where one person waits on another. Until a handoff lands, the receiver works against the mock listed in the last column.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Handoff</th><th>What is delivered</th><th>Due</th><th>Mock until ready</th></tr></thead>
+        <tbody>
+          <tr data-m="m1 m2 m3 m4"><td><span class="pill m1">001</span><span class="arrow">→</span>everyone</td><td>Next.js scaffold, Supabase clients, <code>src/lib/api/</code> envelope and auth guard, base Zod schemas</td><td class="when">00:30</td><td>Nothing; this is the one hard blocker. Keep it under 30 minutes.</td></tr>
+          <tr data-m="m2 m3"><td><span class="pill m2">002</span><span class="arrow">→</span><span class="pill m3">004</span></td><td>Published rows in <code>household_requests</code> and the private roof-photos bucket</td><td class="when">01:30</td><td>Seeded Sharma Residence request with status <code>open</code></td></tr>
+          <tr data-m="m1 m2"><td><span class="pill m1">003</span><span class="arrow">→</span><span class="pill m2">002</span></td><td>Estimate card component and <code>POST /api/solar/calculate</code></td><td class="when">02:30</td><td>Static estimate JSON in the dashboard</td></tr>
+          <tr data-m="m1 m2"><td><span class="pill m1">003</span><span class="arrow">→</span><span class="pill m2">006</span></td><td>CFA and net-cost functions for per-quote net cost</td><td class="when">01:30</td><td>Import the pure functions; they have no I/O</td></tr>
+          <tr data-m="m3 m2"><td><span class="pill m3">005</span><span class="arrow">→</span><span class="pill m2">006</span></td><td><code>quotes</code> table plus 3 seeded demo quotes</td><td class="when">02:30</td><td>Fixture quotes in <code>tests/fixtures/</code></td></tr>
+          <tr data-m="m2 m1"><td><span class="pill m2">006</span><span class="arrow">→</span><span class="pill m1">007</span></td><td>Comparison screen slot for the Accept button and confirm dialog</td><td class="when">03:30</td><td>Call <code>POST /api/quotes/:id/accept</code> from a test page</td></tr>
+          <tr data-m="m4 m2"><td><span class="pill m4">008</span><span class="arrow">→</span><span class="pill m2">002</span></td><td>Roof-analysis panel in the wizard and dashboard extension point</td><td class="when">02:30</td><td>Panel shows "analysis unavailable"</td></tr>
+          <tr data-m="m4 m3"><td><span class="pill m4">008</span><span class="arrow">→</span><span class="pill m3">004</span></td><td>Latest roof assessment summary on the vendor request page</td><td class="when">03:30</td><td>Section hidden when no assessment exists</td></tr>
+          <tr data-m="m4 m2"><td><span class="pill m4">010</span><span class="arrow">→</span><span class="pill m2">002</span></td><td>Mic button on the usage-and-budget step, fields pre-filled for confirmation</td><td class="when">03:30</td><td>Manual inputs only</td></tr>
+          <tr data-m="m4 m3"><td><span class="pill m4">009</span><span class="arrow">→</span><span class="pill m3">005</span></td><td>"Extract from document" pre-fills the existing quote form</td><td class="when">04:00</td><td>Manual quote form</td></tr>
+          <tr data-m="m4 m2"><td><span class="pill m4">009</span><span class="arrow">→</span><span class="pill m2">006</span></td><td>Source-document link in the comparison view, plus the injected demo quote</td><td class="when">04:00</td><td>No link shown</td></tr>
+          <tr data-m="m4 m2"><td><span class="pill m4">011</span><span class="arrow">→</span><span class="pill m2">002</span><span class="pill m2">006</span></td><td>Advisor panel and dashboard shortcut</td><td class="when">04:30</td><td>Deterministic template summary</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Working rules</span>
+      <h2>Keep four people from colliding</h2>
+    </div>
+    <div class="rules">
+      <div class="rule"><h3>One branch per spec</h3><p>Branch as <code>feat/005-vendor-quote-submission</code>. Only the owner edits that spec folder and its <code>tasks.md</code> checkboxes.</p></div>
+      <div class="rule"><h3>Migrations never clash</h3><p>Each feature writes <code>supabase/migrations/20261101000N00_*.sql</code>, with N as its spec number, so files sort in dependency order.</p></div>
+      <div class="rule"><h3>Shared contracts are frozen</h3><p>Tables, status values, endpoints and error codes come from <code>docs/project-overview.md</code>. To change one, ask Member 1 and update the overview first.</p></div>
+      <div class="rule"><h3>Shared files have an owner</h3><p><code>seed.sql</code> and <code>src/lib/validation/</code> belong to Member 1, the wizard and dashboard to Member 2, <code>src/lib/ai/</code> to Member 4. Others add through small PRs.</p></div>
+      <div class="rule"><h3>P0 before P1</h3><p>At 03:30, if the request → quote → compare → accept flow is not working, Member 4 pauses AI work and helps close it.</p></div>
+      <div class="rule"><h3>Run each spec the same way</h3><p>Set <code>.specify/feature.json</code> to your spec, then run <code>/speckit-analyze</code> and <code>/speckit-implement</code>. Tick tasks as they land.</p></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.filter button');
+  var items = document.querySelectorAll('[data-m]');
+  function apply(f) {
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.f === f)); });
+    if (!f) { document.body.removeAttribute('data-focus'); items.forEach(function (el) { el.classList.remove('on'); }); return; }
+    document.body.setAttribute('data-focus', f);
+    items.forEach(function (el) { el.classList.toggle('on', el.getAttribute('data-m').split(' ').indexOf(f) !== -1); });
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.f); }); });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default' });
+</script>
+</body>
+</html>
