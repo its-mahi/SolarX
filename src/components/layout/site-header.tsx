@@ -20,8 +20,15 @@ export function SiteHeader({ profile }: Props) {
   const [open, setOpen] = useState(false);
   const items = NAV_ITEMS[profile.role];
 
+  // Highlight only the most specific matching item (e.g. /vendor/quotes, not also /vendor).
+  const matches = items.filter((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
+  const activeHref = matches.reduce<string | null>(
+    (best, item) => (best === null || item.href.length > best.length ? item.href : best),
+    null,
+  );
+
   const links = items.map((item) => {
-    const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+    const active = item.href === activeHref;
     return (
       <Link
         key={item.href}

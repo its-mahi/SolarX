@@ -1,0 +1,56 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1270 >>
+stream
+BT /F2 16 Tf 50 790 Td (QUOTATION - GreenVolt Solar \(Demo\)) Tj ET
+BT /F1 11 Tf 50 762 Td (Fictional demo document for testing. Not a real vendor.) Tj ET
+BT /F1 11 Tf 50 744 Td () Tj ET
+BT /F1 11 Tf 50 726 Td (Customer: Sharma Residence \(Demo\)) Tj ET
+BT /F1 11 Tf 50 708 Td (System: 3 kW on-grid rooftop solar system) Tj ET
+BT /F1 11 Tf 50 690 Td (Total price: Rs 1,45,000 \(one lakh forty-five thousand rupees\), all inclusive) Tj ET
+BT /F1 11 Tf 50 672 Td () Tj ET
+BT /F1 11 Tf 50 654 Td (Components) Tj ET
+BT /F1 11 Tf 50 636 Td (- Solar panels: 6 x 550 W, brand "Demo PV") Tj ET
+BT /F1 11 Tf 50 618 Td (- Inverter: "Demo Inverter", on-grid) Tj ET
+BT /F1 11 Tf 50 600 Td () Tj ET
+BT /F1 11 Tf 50 582 Td (Warranty) Tj ET
+BT /F1 11 Tf 50 564 Td (- Panel product warranty: 12 years) Tj ET
+BT /F1 11 Tf 50 546 Td (- Panel performance warranty: 25 years) Tj ET
+BT /F1 11 Tf 50 528 Td (- Inverter warranty: 5 years) Tj ET
+BT /F1 11 Tf 50 510 Td () Tj ET
+BT /F1 11 Tf 50 492 Td (Installation: within 20 days of order confirmation) Tj ET
+BT /F1 11 Tf 50 474 Td (Net-metering documentation and application support are included.) Tj ET
+BT /F1 11 Tf 50 456 Td () Tj ET
+BT /F1 11 Tf 50 438 Td (Payment: 50% advance, 50% on commissioning.) Tj ET
+BT /F1 11 Tf 50 420 Td () Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001573 00000 n 
+0000001643 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1718
+%%EOF
