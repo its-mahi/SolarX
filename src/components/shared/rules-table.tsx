@@ -1,6 +1,5 @@
 import { ExternalLink } from "lucide-react";
 import type { Rule } from "@/config/rules";
-import { cn } from "@/lib/utils";
 
 function formatValue(rule: Rule): string {
   const v = rule.value as unknown;
@@ -12,20 +11,6 @@ function formatValue(rule: Rule): string {
     return `${min} to ${max}`;
   }
   return typeof v === "number" ? v.toLocaleString("en-IN") : String(v);
-}
-
-function VerificationBadge({ rule }: { rule: Rule }) {
-  const verified = rule.verification === "verified";
-  return (
-    <span
-      className={cn(
-        "inline-flex w-fit items-center rounded-full border px-2 py-0.5 text-xs font-semibold",
-        verified ? "border-primary bg-mint text-primary" : "border-highlight bg-highlight/15 text-foreground",
-      )}
-    >
-      {verified ? "Verified" : "Illustrative"}
-    </span>
-  );
 }
 
 function SourceLink({ rule }: { rule: Rule }) {
@@ -42,8 +27,6 @@ function SourceLink({ rule }: { rule: Rule }) {
   );
 }
 
-const dateText = (d: string | null, pending: string) => d ?? pending;
-
 export function RulesTable({ rules }: { rules: Rule[] }) {
   return (
     <>
@@ -53,7 +36,7 @@ export function RulesTable({ rules }: { rules: Rule[] }) {
           <caption className="sr-only">Rules used for every estimate, with their sources</caption>
           <thead className="bg-muted">
             <tr>
-              {["Rule", "Value", "Applies to", "Source", "Dates", "Status", "Limitations"].map((h) => (
+              {["Rule", "Value", "Applies to", "Source"].map((h) => (
                 <th key={h} scope="col" className="px-3 py-2 font-semibold">
                   {h}
                 </th>
@@ -77,21 +60,6 @@ export function RulesTable({ rules }: { rules: Rule[] }) {
                 <td className="px-3 py-3">
                   <SourceLink rule={rule} />
                 </td>
-                <td className="px-3 py-3 whitespace-nowrap">
-                  Effective: {dateText(rule.effectiveDate, "Pending verification")}
-                  <br />
-                  Retrieved: {dateText(rule.retrievedOn, "Pending verification")}
-                </td>
-                <td className="px-3 py-3">
-                  <VerificationBadge rule={rule} />
-                </td>
-                <td className="px-3 py-3">
-                  <ul className="list-disc space-y-1 pl-4">
-                    {rule.limitations.map((l) => (
-                      <li key={l}>{l}</li>
-                    ))}
-                  </ul>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -102,10 +70,7 @@ export function RulesTable({ rules }: { rules: Rule[] }) {
       <ul className="flex flex-col gap-3 md:hidden">
         {rules.map((rule) => (
           <li key={rule.key} className="flex flex-col gap-2 rounded-xl border bg-card p-4 text-sm">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <h3 className="font-semibold">{rule.name}</h3>
-              <VerificationBadge rule={rule} />
-            </div>
+            <h3 className="font-semibold">{rule.name}</h3>
             <p className="text-base font-medium">
               {formatValue(rule)} <span className="text-sm font-normal text-muted-foreground">{rule.unit}</span>
             </p>
@@ -113,14 +78,6 @@ export function RulesTable({ rules }: { rules: Rule[] }) {
               {rule.consumerCategory} · <span className="text-muted-foreground">{rule.geography}</span>
             </p>
             <SourceLink rule={rule} />
-            <p className="text-muted-foreground">
-              Effective: {dateText(rule.effectiveDate, "Pending verification")} · Retrieved: {dateText(rule.retrievedOn, "Pending verification")}
-            </p>
-            <ul className="list-disc space-y-1 pl-4">
-              {rule.limitations.map((l) => (
-                <li key={l}>{l}</li>
-              ))}
-            </ul>
           </li>
         ))}
       </ul>

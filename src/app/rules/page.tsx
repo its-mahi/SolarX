@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ExternalLink, TriangleAlert } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { activeRuleSet } from "@/config/rules";
 import { PublicHeader } from "@/components/layout/public-header";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -15,7 +15,6 @@ export const metadata: Metadata = { title: "Rules & sources · SURYAMIT" };
 export default async function RulesPage() {
   const session = await getOptionalSession();
   const rules = Object.values(activeRuleSet.rules);
-  const anyIllustrative = rules.some((r) => r.verification === "illustrative");
   const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
   return (
@@ -31,21 +30,10 @@ export default async function RulesPage() {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold text-primary md:text-3xl">Rules &amp; sources</h1>
           <p className="max-w-prose text-muted-foreground">
-            Every estimate in SURYAMIT is calculated by code from the rules below. {activeRuleSet.name}, version{" "}
-            <strong className="font-semibold text-foreground">{activeRuleSet.version}</strong>.
+            Every estimate in SURYAMIT is calculated by code from the rules below. {activeRuleSet.name}.
           </p>
         </header>
 
-        {anyIllustrative ? (
-          <div role="note" className="flex gap-3 rounded-xl border-2 border-highlight bg-highlight/15 p-4">
-            <TriangleAlert aria-hidden className="mt-0.5 size-5 shrink-0" />
-            <p className="text-sm">
-              <strong>Illustrative baseline — verify before demo.</strong> These values are planning placeholders, not
-              official figures. They show as &quot;Pending verification&quot; until someone checks them against the official
-              sources.
-            </p>
-          </div>
-        ) : null}
 
         <section aria-labelledby="rules-heading" className="flex flex-col gap-3">
           <h2 id="rules-heading" className="text-xl font-semibold">
