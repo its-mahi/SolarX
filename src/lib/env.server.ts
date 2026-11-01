@@ -13,6 +13,10 @@ const serverEnvSchema = z.object({
   DEMO_ACCOUNT_PASSWORD: z.string().min(8).optional(),
   GEMINI_API_KEY: z.string().optional(),
   GROQ_API_KEY: z.string().optional(),
+  GEMINI_MODEL: z.string().optional(),
+  GROQ_MODEL: z.string().optional(),
+  AI_TIMEOUT_MS: z.string().optional(),
+  AI_MAX_RETRIES: z.string().optional(),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -25,6 +29,10 @@ export function serverEnv(): ServerEnv {
     DEMO_ACCOUNT_PASSWORD: process.env.DEMO_ACCOUNT_PASSWORD || undefined,
     GEMINI_API_KEY: process.env.GEMINI_API_KEY || undefined,
     GROQ_API_KEY: process.env.GROQ_API_KEY || undefined,
+    GEMINI_MODEL: process.env.GEMINI_MODEL || undefined,
+    GROQ_MODEL: process.env.GROQ_MODEL || undefined,
+    AI_TIMEOUT_MS: process.env.AI_TIMEOUT_MS || undefined,
+    AI_MAX_RETRIES: process.env.AI_MAX_RETRIES || undefined,
   });
 }
 

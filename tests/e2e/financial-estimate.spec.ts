@@ -1,5 +1,5 @@
-// Plan §18: "Assumptions and rule version are visible". The estimate-card part of this check is
-// added with feature 002's request pages; the public rules page is covered here.
+// Plan §18: "Assumptions and rule version are visible": the estimate card on the demo request's
+// page (needs 002's request page) and the public rules page.
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
@@ -32,4 +32,32 @@ test("rules page fits 360 px and passes contrast checks", async ({ page }) => {
   expect(scrollWidth).toBeLessThanOrEqual(innerWidth);
   const results = await new AxeBuilder({ page }).withRules(["color-contrast", "label", "scope-attr-valid"]).analyze();
   expect(results.violations.map((v) => v.id)).toEqual([]);
+});
+
+const DEMO_REQUEST_ID = "d0000000-0000-4000-8000-000000000201";
+
+test("demo household sees the estimate with assumptions, rule version, disclaimer and rules link", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /try as demo household/i }).click();
+  await page.waitForURL("**/household");
+  await expect(page.getByRole("button", { name: /account menu for/i })).toBeVisible();
+
+  const response = await page.goto(`/household/requests/${DEMO_REQUEST_ID}`);
+  test.skip(!response || response.status() === 404, "002's request page is not available yet");
+
+  const card = page.getByRole("region", { name: "Solar estimate" }).first();
+  await expect(card.getByText("Central subsidy", { exact: true })).toBeVisible();
+  await expect(card).toContainText("₹78,000");
+  await expect(card.getByText("Assumptions behind these numbers")).toBeVisible();
+  await expect(card.getByText("pm-surya-ghar.v1")).toBeVisible();
+  await expect(card.getByText(/Subsidy eligibility, approval and payment/)).toBeVisible();
+  await expect(card.getByRole("link", { name: /Rules & sources/ })).toHaveAttribute("href", "/rules");
+
+  // What-if preview is labelled and does not change the saved figures.
+  const picker = card.getByLabel("Try a different system size");
+  if (await picker.count()) {
+    await picker.selectOption("5");
+    await expect(card.getByText("Preview — not saved").first()).toBeVisible();
+    await expect(card.getByText(/does not increase above 3 kW/)).toBeVisible();
+  }
 });

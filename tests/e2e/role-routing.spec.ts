@@ -31,5 +31,7 @@ test("an external next= value is ignored after sign-in", async ({ page }) => {
   await page.getByLabel("Password").fill(process.env.DEMO_ACCOUNT_PASSWORD ?? "suryamit-demo-2026");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await page.waitForURL("**/household");
-  await expect(page).toHaveURL(/127.0.0.1:3000\/household$/);
+  const url = new URL(page.url());
+  expect(url.pathname).toBe("/household");
+  expect(url.hostname).toBe("127.0.0.1"); // never redirected to the external next= host
 });

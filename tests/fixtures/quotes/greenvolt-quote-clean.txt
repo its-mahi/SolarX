@@ -1,0 +1,20 @@
+QUOTATION - GreenVolt Solar (Demo)
+Fictional demo document for testing. Not a real vendor.
+
+Customer: Sharma Residence (Demo)
+System: 3 kW on-grid rooftop solar system
+Total price: Rs 1,45,000 (one lakh forty-five thousand rupees), all inclusive
+
+Components
+- Solar panels: 6 x 550 W, brand "Demo PV"
+- Inverter: "Demo Inverter", on-grid
+
+Warranty
+- Panel product warranty: 12 years
+- Panel performance warranty: 25 years
+- Inverter warranty: 5 years
+
+Installation: within 20 days of order confirmation
+Net-metering documentation and application support are included.
+
+Payment: 50% advance, 50% on commissioning.
