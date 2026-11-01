@@ -29,11 +29,11 @@ else `homePathForRole(role)` (`/household` or `/vendor`).
 
 Props: `{ profile: { name, role, is_demo }, children }`.
 
-- Header: Sun icon + "SURYAMIT" wordmark linking to role home; role nav from `nav-config.ts`;
+- Header: Sun icon + "SolarX" wordmark linking to role home; role nav from `nav-config.ts`;
   `DemoBadge` when `is_demo`; `UserMenu` (name, role label "Household"/"Vendor", "Account",
   "Sign out").
 - Mobile (< 768 px): nav collapses into a menu button; all items reachable by keyboard.
-- Footer: link "Rules & sources" → `/rules` (003), text "SURYAMIT shows estimates only. It is not
+- Footer: link "Rules & sources" → `/rules` (003), text "SolarX shows estimates only. It is not
   a government service and does not guarantee subsidy."
 - Main content max width 1200 px, 16 px side gutter on mobile.
 
@@ -55,7 +55,7 @@ later features append items (e.g. 002 "New request", 005 "My quotes").
 ## Landing copy (English)
 
 - Hero: "Understand your roof. Compare your options. Choose solar with confidence."
-- Sub: "SURYAMIT helps households under PM Surya Ghar get comparable rooftop-solar quotations
+- Sub: "SolarX helps households under PM Surya Ghar get comparable rooftop-solar quotations
   from vendors, with transparent, code-calculated estimates."
 - How it works: 1 Publish your request · 2 Receive vendor quotes · 3 Compare clearly · 4 Accept
   with confidence.

@@ -148,7 +148,7 @@ On a published request with consent, withdraw consent and verify it is recorded 
 ### Edge Cases
 
 - Pin placed outside India, in the sea, or coordinates typed out of range → validation error
-  "SURYAMIT currently supports locations in India".
+  "SolarX currently supports locations in India".
 - Map tiles fail to load (offline or tile service down) → coordinates can still be entered
   manually or taken from the device location; the step stays usable.
 - Device location permission denied → a message explains how to place the pin manually.
@@ -195,7 +195,7 @@ On a published request with consent, withdraw consent and verify it is recorded 
 - **FR-006**: Roof photos MUST have embedded metadata (including GPS location, device and
   timestamp information) removed and be reduced to a sensible maximum dimension before storage.
 - **FR-007**: The Roof photo step MUST offer an optional, unticked-by-default consent "Allow
-  SURYAMIT to send this roof photo to an AI service to describe visible obstructions", explained
+  SolarX to send this roof photo to an AI service to describe visible obstructions", explained
   in plain language. The choice MUST be stored with the request. This feature performs no AI
   processing.
 - **FR-008**: While a request is a draft, the household MUST be able to give or remove AI consent;

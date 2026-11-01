@@ -95,7 +95,7 @@ export function AcceptQuoteDialog(props: AcceptQuoteDialogProps) {
           {otherActiveCount === 0
             ? "There are no other active quotes."
             : `The other ${otherActiveCount} active quote${otherActiveCount === 1 ? "" : "s"} will be declined.`}{" "}
-          This cannot be undone in SURYAMIT.
+          This cannot be undone in SolarX.
         </p>
         {error ? (
           <p role="alert" className="text-sm text-destructive">

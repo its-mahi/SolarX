@@ -48,7 +48,7 @@ path responds in well under 1 s.
 
 **Constraints**: Transcript ≤ 500 chars; listening ≤ 30 s; AI 8 s per attempt and 10 s overall
 (abort signal); no audio leaves the
-browser to SURYAMIT; transcript never stored or logged; works with AI disabled.
+browser to SolarX; transcript never stored or logged; works with AI disabled.
 
 **Scale/Scope**: Hackathon demo (1 household, a few dozen parses); 1 endpoint, ~6 domain/AI
 modules, ~5 UI files.
@@ -62,7 +62,7 @@ modules, ~5 UI files.
 | I | Complete Workflow First | PASS | P1 add-on mounted through 002's `UsageVoiceSlot` (wrapped in 002's `SlotBoundary`); manual fields are always visible; no P0 path calls this feature; feature is built after the P0 flow (overview §14) |
 | II | Deterministic Core, Advisory AI | PASS | AI only parses a transcript into fields (an allowed use). Number normalization, grounding, conflict detection and bounds are pure code in `src/lib/domain/voice/`. AI cannot introduce a value not spoken (grounding); unknowns stay `null`. No estimate or score is computed here |
 | III | Untrusted Input & Injection Resistance | PASS | Transcript framed with 008's `untrustedText("voice transcript", …)` (nonce-tagged, delimiter-neutralised), system instructions separate, strict `.strict()` Zod output schema validated on return, malformed output discarded; request body validated with `voiceParseRequestSchema`; output space is four numbers and the route performs no writes, so injected text cannot trigger actions |
-| IV | Security & Privacy by Default | PASS | Server-side auth + household role check via 001's guard; no DB access so RLS unaffected; AI key stays in 008's server-only client; no audio to SURYAMIT; transcript not stored or logged; no personal data sent to the AI; browser speech-service disclosure shown |
+| IV | Security & Privacy by Default | PASS | Server-side auth + household role check via 001's guard; no DB access so RLS unaffected; AI key stays in 008's server-only client; no audio to SolarX; transcript not stored or logged; no personal data sent to the AI; browser speech-service disclosure shown |
 | V | Transparent, Sourced Estimates | PASS (N/A) | Feature produces no estimates; field limits mirror 002 FR-009; values are user-confirmed inputs |
 | VI | Targeted Mandatory Testing | PASS | Unit: number normalization cases, rule parser, merge/grounding matrix, AI schema (malformed output). Integration: route with mocked AI (success, malformed, failure → rules or 503), authorization (401/403), injection transcript, no-logging |
 | VII | Graceful Degradation | PASS | AI failure/timeout/malformed → rule-only result or `AI_UNAVAILABLE` with retry + manual entry; unsupported browser/language, mic denied and silence handled; panel has idle/listening/interpreting/review/empty/error states; shared error envelope without internals |

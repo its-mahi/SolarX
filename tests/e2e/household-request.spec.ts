@@ -34,8 +34,8 @@ test("household creates and publishes a request", async ({ page }) => {
   await expect(page).toHaveURL(/\/household\/requests\/[0-9a-f-]{36}\?step=photo$/);
 
   await uploadRoof(page);
-  await page.getByLabel(/Allow SURYAMIT to send this roof photo/).check();
-  await expect(page.getByLabel(/Allow SURYAMIT to send this roof photo/)).toBeChecked();
+  await page.getByLabel(/Allow SolarX to send this roof photo/).check();
+  await expect(page.getByLabel(/Allow SolarX to send this roof photo/)).toBeChecked();
   await page.getByRole("button", { name: "Continue" }).click();
 
   await page.getByLabel(/Monthly electricity use/).fill("250");
@@ -72,7 +72,7 @@ test("publish stays disabled until everything is filled in, and errors are speci
   await page.getByLabel("Latitude", { exact: true }).fill("51.5");
   await page.getByLabel("Longitude", { exact: true }).fill("78.4");
   await page.getByRole("button", { name: "Continue" }).click();
-  await expect(page.getByText("SURYAMIT currently supports locations in India")).toBeVisible();
+  await expect(page.getByText("SolarX currently supports locations in India")).toBeVisible();
 
   await fillLocation(page);
   await page.getByRole("button", { name: "Continue" }).click();

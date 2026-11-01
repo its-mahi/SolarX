@@ -25,7 +25,7 @@ Validation guide for feature 001. Contracts: [contracts/](contracts/). Data:
 
 | # | Steps | Expected | Spec ref |
 |---|---|---|---|
-| 1 | Open `/` signed out | SURYAMIT name, core promise, 4-step "How it works", household and vendor entry points, sign-in/up links, four demo buttons with "Fictional demo data" note | US1-1, FR-001 |
+| 1 | Open `/` signed out | SolarX name, core promise, 4-step "How it works", household and vendor entry points, sign-in/up links, four demo buttons with "Fictional demo data" note | US1-1, FR-001 |
 | 2 | Click "Try as demo household" | Arrive at `/household`; header shows "Sharma Residence", "Household", **Demo** badge | US1-2, US1-4 |
 | 3 | User menu → Sign out; press browser Back | Landing page; Back shows landing/login, never protected content | US1-5 |
 | 4 | Click "Demo vendor — GreenVolt Solar" | Arrive at `/vendor` with Demo badge | US1-3 |

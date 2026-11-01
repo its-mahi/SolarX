@@ -34,7 +34,7 @@ feature re-scaffolds). Then one phase per user story in priority order.
 - [X] T006 [P] Run `supabase init` to create supabase/config.toml and set `[auth.email] enable_confirmations = false` and `site_url = "http://localhost:3000"`
 - [X] T007 [P] Create vitest.config.ts with projects `unit` (tests/unit/**, environment node, no network) and `integration` (tests/integration/**, sequential, 30 s timeout, setupFiles tests/helpers/env.ts) and create tests/helpers/env.ts loading `.env.local`/`.env.test`
 - [X] T008 [P] Create playwright.config.ts (testDir tests/e2e, baseURL `http://localhost:3000`, webServer `npm run dev`, projects: desktop Chromium and mobile Chromium at 360×780)
-- [X] T009 [P] Define SURYAMIT theme tokens in src/app/globals.css (primary `#14532D`, accent `#22A55B`, mint `#E3F6EC`, background `#FAF8F3`, highlight `#F5B700`, foreground `#0F1F17`, destructive `#B42318`, visible focus ring) and the root layout src/app/layout.tsx (Inter via `next/font/google`, `<html lang="en">`, Sonner `<Toaster />`, metadata title "SURYAMIT")
+- [X] T009 [P] Define SolarX theme tokens in src/app/globals.css (primary `#14532D`, accent `#22A55B`, mint `#E3F6EC`, background `#FAF8F3`, highlight `#F5B700`, foreground `#0F1F17`, destructive `#B42318`, visible focus ring) and the root layout src/app/layout.tsx (Inter via `next/font/google`, `<html lang="en">`, Sonner `<Toaster />`, metadata title "SolarX")
 
 ---
 
@@ -69,8 +69,8 @@ in this feature and all later features.
 - [X] T028 Implement src/lib/api/auth-guard.ts (`import "server-only"`): `requireUser(req)` (UNAUTHENTICATED when no session or no profile row), `requireRole(req, role)` (FORBIDDEN on other role; returns `vendor` row for vendors), `requirePageRole(role)` (redirect anonymous to `/login?next=`, wrong role to own home), `assertSameOrigin(req, authVia)` (FORBIDDEN for cookie-authenticated POST/PATCH/DELETE without matching `Origin`)
 - [X] T029 Implement src/middleware.ts calling `updateSession()` and redirecting anonymous requests for `/household/:path*`, `/vendor/:path*`, `/account` to `/login?next=<path>`; matcher excludes static assets and `/api/*` — *Impl note: Next.js 16 renamed Middleware to Proxy, so this is `src/proxy.ts` (research R-14).*
 - [X] T030 [P] Create shared state components src/components/shared/loading-state.tsx, src/components/shared/empty-state.tsx, src/components/shared/error-state.tsx and src/components/shared/field-error.tsx per contracts/ui-routes.md (ErrorState never renders technical detail; FieldError uses `role="alert"`)
-- [X] T031 [P] Create src/components/shared/brand-logo.tsx (Lucide Sun + "SURYAMIT" wordmark) and src/components/shared/demo-badge.tsx ("Demo" pill with AA-contrast text)
-- [X] T032 Create the app shell: src/components/layout/nav-config.ts (`NAV_ITEMS` household: Dashboard `/household`; vendor: Open requests `/vendor`), src/components/layout/site-header.tsx, src/components/layout/user-menu.tsx (name, role label, Account link, Sign out via browser client → `/`), src/components/layout/site-footer.tsx ("Rules & sources" → `/rules`; "SURYAMIT shows estimates only. It is not a government service and does not guarantee subsidy."), src/components/layout/public-header.tsx and src/components/layout/app-shell.tsx (mobile menu below 768 px, 16 px gutters)
+- [X] T031 [P] Create src/components/shared/brand-logo.tsx (Lucide Sun + "SolarX" wordmark) and src/components/shared/demo-badge.tsx ("Demo" pill with AA-contrast text)
+- [X] T032 Create the app shell: src/components/layout/nav-config.ts (`NAV_ITEMS` household: Dashboard `/household`; vendor: Open requests `/vendor`), src/components/layout/site-header.tsx, src/components/layout/user-menu.tsx (name, role label, Account link, Sign out via browser client → `/`), src/components/layout/site-footer.tsx ("Rules & sources" → `/rules`; "SolarX shows estimates only. It is not a government service and does not guarantee subsidy."), src/components/layout/public-header.tsx and src/components/layout/app-shell.tsx (mobile menu below 768 px, 16 px gutters)
 - [X] T033 [P] Create src/app/error.tsx (client error boundary rendering ErrorState with retry) and src/app/not-found.tsx
 - [X] T034 [P] Create shared test helpers tests/helpers/supabase.ts (`anonClient()`, `adminClient()`, `signInAs(email, password)` returning client + access token), tests/helpers/users.ts (`createTestUser({ role, vendor? })` via admin API with metadata, `deleteTestUser(id)`) and tests/helpers/api.ts (`apiFetch(path, { token?, method, body?, origin? })` against `TEST_BASE_URL` default `http://localhost:3000`)
 
@@ -78,7 +78,7 @@ in this feature and all later features.
 
 ---
 
-## Phase 3: User Story 1 - Try SURYAMIT instantly with a demo account (Priority: P1) 🎯 MVP
+## Phase 3: User Story 1 - Try SolarX instantly with a demo account (Priority: P1) 🎯 MVP
 
 **Goal**: Landing page + one-click demo sign-in into the right role area with Demo labels and sign-out.
 

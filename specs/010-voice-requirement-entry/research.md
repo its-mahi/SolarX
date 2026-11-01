@@ -33,7 +33,7 @@ error states.
 > Stop or at 30 s.
 
 **Rationale**: Fixed by the constitution stack and overview §10. Zero server cost, no audio
-handling in SURYAMIT (FR-021, SC-007), no new dependency. Interim results give the user
+handling in SolarX (FR-021, SC-007), no new dependency. Interim results give the user
 immediate feedback (FR-006, FR-008).
 
 **Alternatives considered**: Server-side speech-to-text (audio upload to a provider) — rejected:
@@ -41,7 +41,7 @@ violates "no audio sent to the server", adds a dependency, storage and cost. A r
 library/polyfill — rejected: no benefit over the native API for a 5-hour MVP.
 
 **Note on privacy**: Chromium-based browsers send audio to the browser vendor's speech service.
-SURYAMIT cannot prevent this, so the panel shows a one-line disclosure (FR-021).
+SolarX cannot prevent this, so the panel shows a one-line disclosure (FR-021).
 
 ## R2. Detecting unsupported browser and unsupported language
 

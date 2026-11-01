@@ -51,7 +51,7 @@ export function SignInForm({ next }: { next?: string }) {
       router.replace(safeNextPath(next, json.data.profile.role as Role));
       router.refresh();
     } catch {
-      setErrors({ form: "We couldn't reach SURYAMIT. Check your connection and try again." });
+      setErrors({ form: "We couldn't reach SolarX. Check your connection and try again." });
     } finally {
       setSubmitting(false);
     }

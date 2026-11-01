@@ -1,4 +1,4 @@
-# Deploy SURYAMIT to Vercel (with database and AI keys)
+# Deploy SolarX to Vercel (with database and AI keys)
 
 This guide takes you from the code in GitHub to a working public site. Follow the parts in order.
 Never paste real keys into this file or into Git. Keys go only into Vercel's environment
@@ -53,11 +53,11 @@ tables, the demo data and the demo roof photo. If you use it:
 ### Option B — Create a new project
 
 **Step 1.1 — Create the project.** Go to <https://supabase.com/dashboard> → **New project**.
-Choose a name (for example `suryamit`), region **South Asia (Mumbai)**, and a strong database
+Choose a name (for example `solarx`), region **South Asia (Mumbai)**, and a strong database
 password. **Save that password in a password manager.** You need it to apply database changes.
 
 (Command-line alternative, run in your own terminal: `npx supabase login`, then
-`npx supabase projects create suryamit --org-id <your-org-id> --region ap-south-1 --db-password '<password>'`.)
+`npx supabase projects create solarx --org-id <your-org-id> --region ap-south-1 --db-password '<password>'`.)
 
 **Step 1.2 — Apply the database structure.** In your own terminal, inside the project folder:
 

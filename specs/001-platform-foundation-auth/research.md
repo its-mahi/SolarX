@@ -177,7 +177,7 @@ to make.
   `updateSession()` helper. (3) `getOptionalSession()` reads `cookies()` before its `try` and
   re-throws Next.js internal errors with `unstable_rethrow`, so session pages are never prerendered.
 - **Rationale**: With Cache Components, reading `cookies()` outside `<Suspense>` is a build error,
-  and every SURYAMIT page reads the session. Turning it off keeps all 11 features simple
+  and every SolarX page reads the session. Turning it off keeps all 11 features simple
   (constitution VIII). Catching the internal dynamic-rendering error had made `/household`,
   `/vendor`, `/account` and `/` static at build time. That is now fixed, and the build output
   shows them as dynamic (ƒ).

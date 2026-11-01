@@ -1,5 +1,5 @@
 // Quote comparison scoring configuration (specs/006 research R-01). Versioned: any change bumps scoring.v2.
-// Scores are defined by SURYAMIT for guidance only; they are not an official rating.
+// Scores are defined by SolarX for guidance only; they are not an official rating.
 export const RECOMMENDED_ITEMS = [
   "panelBrand",
   "panelWattage",
@@ -43,7 +43,7 @@ export const scoringConfig = {
   tolerances: { capacityMismatchRatio: 0.1, inverterMinRatio: 0.8 },
   flags: { lowPriceVsMedianRatio: 0.7, capacityFarFromRequestRatio: 0.5 },
   recommendedItems: RECOMMENDED_ITEMS,
-  disclaimer: "Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating.",
+  disclaimer: "Comparison score defined by SolarX for guidance only — not a government, official or certification rating.",
 } as const;
 
 export type ScoringConfig = typeof scoringConfig;

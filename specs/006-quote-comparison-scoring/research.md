@@ -20,7 +20,7 @@
                      inverterBrand, inverterType, inverterCapacity, warrantyPanelProduct,
                      warrantyPanelPerformance, warrantyInverter, warrantyWorkmanship,
                      installationDays, earthingStated, documentationStated]             // 14
-  disclaimer: "Comparison score defined by SURYAMIT for guidance only — not a government,
+  disclaimer: "Comparison score defined by SolarX for guidance only — not a government,
                official or certification rating."
   ```
 

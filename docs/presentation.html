@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SURYAMIT Presentation</title>
+<title>SolarX Presentation</title>
 <style>
   /* Layout: a fixed 1280x720 stage scaled to fit any screen. Keys: arrows/space, F fullscreen, N notes, T timer. */
   :root {
@@ -122,7 +122,7 @@
       <div class="sunmark" aria-hidden="true"></div>
       <div class="title-wrap">
         <p class="eyebrow">SELC Hackathon · PM Surya Ghar Muft Bijli Yojana</p>
-        <h1>SURYAMIT</h1>
+        <h1>SolarX</h1>
         <p class="tagline">Your rooftop. Your solar future. Your smartest decision.</p>
         <p class="sub">An AI-assisted marketplace where households get comparable rooftop-solar quotes from vendors, with transparent, code-calculated numbers.</p>
         <div class="chips"><span class="chip">Request</span><span class="chip arrow">→</span><span class="chip">Quote</span><span class="chip arrow">→</span><span class="chip">Compare</span><span class="chip arrow">→</span><span class="chip">Accept</span></div>
@@ -450,7 +450,7 @@
       a.target = '_blank';
       a.rel = 'noopener';
     });
-    try { localStorage.setItem('suryamit-base', base); } catch (e) {}
+    try { localStorage.setItem('solarx-base', base); } catch (e) {}
   }
 
   function show(n) {
@@ -498,7 +498,7 @@
   baseInput.addEventListener('input', applyBase);
   window.addEventListener('resize', fit);
 
-  try { var saved = localStorage.getItem('suryamit-base'); if (saved) baseInput.value = saved; } catch (e) {}
+  try { var saved = localStorage.getItem('solarx-base'); if (saved) baseInput.value = saved; } catch (e) {}
   var fromHash = parseInt((location.hash || '').slice(1), 10);
   fit(); applyBase(); show(isNaN(fromHash) ? 0 : fromHash - 1);
 })();

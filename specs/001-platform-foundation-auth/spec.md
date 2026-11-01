@@ -6,13 +6,13 @@
 
 **Status**: Draft
 
-**Input**: User description: "Project bootstrap and platform foundation for SURYAMIT: landing page; sign-up with role (household or vendor) and sign-in; one-click demo accounts (1 household 'Sharma Residence', 3 vendors SunRise Energy / GreenVolt Solar / SolarTech Solutions, all labelled Demo); profiles and vendor profiles with access rules; role-based routing (household → household area, vendor → vendor area); app shell with SURYAMIT visual identity; shared response envelope, error codes and authorization guard; shared base validation vocabulary; demo seed skeleton. Every later feature depends on this."
+**Input**: User description: "Project bootstrap and platform foundation for SolarX: landing page; sign-up with role (household or vendor) and sign-in; one-click demo accounts (1 household 'Sharma Residence', 3 vendors SunRise Energy / GreenVolt Solar / SolarTech Solutions, all labelled Demo); profiles and vendor profiles with access rules; role-based routing (household → household area, vendor → vendor area); app shell with SolarX visual identity; shared response envelope, error codes and authorization guard; shared base validation vocabulary; demo seed skeleton. Every later feature depends on this."
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - Try SURYAMIT instantly with a demo account (Priority: P1)
+### User Story 1 - Try SolarX instantly with a demo account (Priority: P1)
 
-A judge, teammate or first-time visitor opens SURYAMIT, reads what the product does on the
+A judge, teammate or first-time visitor opens SolarX, reads what the product does on the
 landing page, and with a single click enters as the demo household ("Sharma Residence") or as
 one of the three demo vendors (SunRise Energy, GreenVolt Solar, SolarTech Solutions). They land
 in the area for that role, see a clear "Demo" label, see who they are signed in as, and can sign
@@ -30,7 +30,7 @@ area labelled "Demo". Delivers value on its own: the product shell is demonstrab
 **Acceptance Scenarios**:
 
 1. **Given** an anonymous visitor, **When** they open the landing page, **Then** they see the
-   SURYAMIT name, the core promise ("Understand your roof. Compare your options. Choose solar
+   SolarX name, the core promise ("Understand your roof. Compare your options. Choose solar
    with confidence."), a short "how it works" sequence (publish request → receive quotes →
    compare → accept), separate entry points for households and vendors, sign-in and sign-up
    links, and the demo account options.
@@ -183,11 +183,11 @@ field error.
 
 **Landing page and visual identity**
 
-- **FR-001**: The system MUST provide a public landing page that presents the SURYAMIT name, the
+- **FR-001**: The system MUST provide a public landing page that presents the SolarX name, the
   core promise, a "how it works" sequence (publish request → receive quotes → compare → accept),
   distinct entry points for households and vendors, sign-in and sign-up links, and (when
   enabled) the demo account options.
-- **FR-002**: All pages MUST share one consistent SURYAMIT visual identity: deep forest green
+- **FR-002**: All pages MUST share one consistent SolarX visual identity: deep forest green
   primary, solar green accent, mint, warm off-white and restrained solar yellow supporting
   colours; Inter or Geist typography; text contrast meeting WCAG 2.1 AA.
 - **FR-003**: All pages delivered by this feature MUST be mobile-first and usable from 360 px

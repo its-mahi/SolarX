@@ -25,7 +25,7 @@ npm run dev          # http://localhost:3000
 | 1 | Demo household → `/household` | Empty state "Create your solar request"; "New request" visible in header and page | US3-1, FR-017 |
 | 2 | New request | Step 1/4 "Location", map centred on Hyderabad, progress shows 4 steps | US1-1, FR-001 |
 | 3 | Click the map; drag pin; type address + locality "Banjara Hills"; Continue | URL becomes `/household/requests/{id}?step=photo`; draft saved | US1-2, FR-003 |
-| 4 | Back to step 1, type latitude `51.5` | Error "SURYAMIT currently supports locations in India" | FR-002 |
+| 4 | Back to step 1, type latitude `51.5` | Error "SolarX currently supports locations in India" | FR-002 |
 | 5 | Tab through step 1 without a mouse; use the coordinate inputs | Pin moves; all controls reachable | SC-007 |
 | 6 | Step 2: choose a 7 MB file, then a PDF | "Photo must be 5 MB or smaller"; "Upload a JPEG, PNG or WebP photo" | FR-004 |
 | 7 | Choose your roof photo | Progress bar, then preview; tick AI consent | US1-3, US1-4 |

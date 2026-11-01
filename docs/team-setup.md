@@ -1,4 +1,4 @@
-# SURYAMIT: Team Setup and Spec Assignments
+# SolarX: Team Setup and Spec Assignments
 
 ## Everyone: one-time setup
 
@@ -125,7 +125,7 @@ Who owns what is in `docs/team-board.html`.
 
 | Problem | Fix |
 |---|---|
-| Another app shows instead of SURYAMIT | Open `http://127.0.0.1:3000` |
+| Another app shows instead of SolarX | Open `http://127.0.0.1:3000` |
 | "Demo account is unavailable" | Check that `.env.local` has the demo lines from `.env.team` |
 | Sign-up fails | Tell Bhavin: the "Confirm email" setting in Supabase needs to be off |
 | `npm install` errors | Run `node -v` and update Node.js to 20.9 or newer |

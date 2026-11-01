@@ -41,7 +41,7 @@ export async function truncatedJpeg(): Promise<Buffer> {
 
 /** Writes a buffer to a temp file for Playwright file choosers; returns the path. */
 export async function writeTempImage(buffer: Buffer, name = "roof.jpg"): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), "suryamit-img-"));
+  const dir = await mkdtemp(join(tmpdir(), "solarx-img-"));
   const path = join(dir, name);
   await writeFile(path, buffer);
   return path;

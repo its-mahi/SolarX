@@ -11,7 +11,7 @@ import { patchRequest, uploadPhoto } from "./use-request-api";
 import { prepareRoofPhoto } from "./resize-image";
 
 export const AI_CONSENT_COPY =
-  "Allow SURYAMIT to send this roof photo to an AI service to describe visible obstructions (optional). The photo is only used for this analysis. You can withdraw consent at any time.";
+  "Allow SolarX to send this roof photo to an AI service to describe visible obstructions (optional). The photo is only used for this analysis. You can withdraw consent at any time.";
 
 export function PhotoStep({ request, onContinue, onUpdated, onBack, onConflict }: StepProps) {
   const inputRef = useRef<HTMLInputElement>(null);

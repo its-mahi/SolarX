@@ -6,7 +6,7 @@
 
 ## Summary
 
-Bootstrap the single SURYAMIT Next.js application and everything every later feature builds on:
+Bootstrap the single SolarX Next.js application and everything every later feature builds on:
 project scaffolding (TypeScript strict, Tailwind, shadcn/ui, Vitest, Playwright, env template),
 the three Supabase clients, the shared API layer (`src/lib/api/`: response envelope, error codes,
 auth guard, safe logging), the shared Zod vocabulary (`src/lib/validation/`), the `profiles` and
@@ -104,7 +104,7 @@ supabase/seed.sql                    C  001 section (demo accounts); M→ later 
 
 src/middleware.ts                    C  session refresh + anonymous redirect for /household, /vendor, /account
 src/app/layout.tsx                   C  root layout, Inter font, Toaster
-src/app/globals.css                  C  SURYAMIT theme tokens (Tailwind + shadcn CSS variables)
+src/app/globals.css                  C  SolarX theme tokens (Tailwind + shadcn CSS variables)
 src/app/page.tsx                     C  landing page
 src/app/error.tsx                    C  root error boundary (ErrorState)
 src/app/not-found.tsx                C

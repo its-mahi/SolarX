@@ -1,4 +1,4 @@
-# CLAUDE.md — SURYAMIT
+# CLAUDE.md — SolarX
 
 AI-assisted rooftop-solar marketplace for Indian households (PM Surya Ghar Muft Bijli Yojana).
 Households publish a solar request, vendors submit quotations, and households compare them with

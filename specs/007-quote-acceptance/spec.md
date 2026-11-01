@@ -12,7 +12,7 @@
 
 ### User Story 1 - Accept one quote with explicit confirmation (Priority: P1)
 
-From the comparison screen, the household chooses "Accept quote" on one quote. A confirmation dialog summarises what will happen: the vendor's name, price, capacity and estimated net cost, and that all other active quotes on this request will be declined and the choice cannot be undone in SURYAMIT. Only after the household confirms does the system accept the quote. In one indivisible step the chosen quote becomes accepted, every other submitted quote on the request becomes rejected, the request becomes accepted, and one acceptance record is stored. Any repeated, duplicate or simultaneous attempt is refused with a clear "already accepted" message and changes nothing.
+From the comparison screen, the household chooses "Accept quote" on one quote. A confirmation dialog summarises what will happen: the vendor's name, price, capacity and estimated net cost, and that all other active quotes on this request will be declined and the choice cannot be undone in SolarX. Only after the household confirms does the system accept the quote. In one indivisible step the chosen quote becomes accepted, every other submitted quote on the request becomes rejected, the request becomes accepted, and one acceptance record is stored. Any repeated, duplicate or simultaneous attempt is refused with a clear "already accepted" message and changes nothing.
 
 **Why this priority**: "Household owner can accept one quote; duplicate acceptance is prevented" is a P0 acceptance condition and the final step of the judged request → quote → compare → accept flow.
 
@@ -121,7 +121,7 @@ When the installation work is arranged or the household no longer needs the requ
 **Household after acceptance**
 
 - **FR-012**: The request page MUST show, for an accepted or closed request: accepted vendor company name and phone (or "Phone not provided"), accepted price and capacity, acceptance date and the next-steps list.
-- **FR-013**: The next-steps list MUST contain: vendor contacts the household for a site survey; confirm the final design and price after the survey; apply on the official PM Surya Ghar portal (with a link to https://pmsuryaghar.gov.in/); installation, net metering and inspection; subsidy decided and paid under the official scheme, not guaranteed by SURYAMIT.
+- **FR-013**: The next-steps list MUST contain: vendor contacts the household for a site survey; confirm the final design and price after the survey; apply on the official PM Surya Ghar portal (with a link to https://pmsuryaghar.gov.in/); installation, net metering and inspection; subsidy decided and paid under the official scheme, not guaranteed by SolarX.
 - **FR-014**: The dashboard request card for an accepted request MUST show "Accepted", the chosen vendor and a "View next steps" action.
 - **FR-015**: After acceptance the comparison screen MUST be read-only, showing each quote's final status and offering no accept action.
 - **FR-016**: The household MUST see the vendor's phone only for the vendor whose quote it accepted.

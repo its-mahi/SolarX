@@ -9,7 +9,7 @@ redirects others).
 1. **Header**: request summary (capacity preference, budget), link back to the request.
 2. **Score summary bar** (`ScoringDisclaimer`): weights "Price 30 · Technical 25 · Warranty 20 ·
    Completeness 15 · Timeline 10", scoring version, and the fixed disclaimer
-   "Comparison score defined by SURYAMIT for guidance only — not a government, official or
+   "Comparison score defined by SolarX for guidance only — not a government, official or
    certification rating."
 3. **View toggle** (≥ md): "Cards | Table". Mobile shows cards only.
 4. **`QuoteCard`** per compared quote, in API order:

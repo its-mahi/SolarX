@@ -4,7 +4,7 @@ import { DemoBadge } from "@/components/shared/demo-badge";
 import { requirePageUser } from "@/lib/api/auth-guard";
 import { ProfileForm } from "./profile-form";
 
-export const metadata: Metadata = { title: "Your account · SURYAMIT" };
+export const metadata: Metadata = { title: "Your account · SolarX" };
 
 export default async function AccountPage() {
   const { profile, email, vendor } = await requirePageUser("/account");

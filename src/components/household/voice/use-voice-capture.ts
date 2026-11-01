@@ -7,7 +7,7 @@ import { DEFAULT_VOICE_LANGUAGE, isVoiceLanguage } from "@/lib/voice/language-su
 import { VOICE_TRANSCRIPT_MAX_CHARS, voiceParseResponseSchema, type VoiceLanguage } from "@/lib/validation/voice";
 import { initialVoiceState, voicePanelReducer } from "./voice-panel-reducer";
 
-const STORAGE_KEY = "suryamit.voice.language";
+const STORAGE_KEY = "solarx.voice.language";
 
 function readStoredLanguage(): VoiceLanguage {
   try {

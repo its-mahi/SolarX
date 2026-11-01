@@ -13,9 +13,9 @@ Sync Impact Report
 - Deferred TODOs: none
 -->
 
-# SURYAMIT Constitution
+# SolarX Constitution
 
-SURYAMIT is an AI-assisted rooftop-solar marketplace for Indian households under PM Surya Ghar
+SolarX is an AI-assisted rooftop-solar marketplace for Indian households under PM Surya Ghar
 Muft Bijli Yojana. Households publish solar requests, vendors submit quotations, and the platform
 helps households compare and accept one. Scope is the SELC Hackathon MVP (4 people, 5 hours).
 Source plan: `docs/project-plan.md`. System overview: `docs/project-overview.md`.
@@ -160,7 +160,7 @@ UI component tests are optional. Each feature's `quickstart.md` MUST list manual
 
 ## Governance
 
-- This constitution supersedes all other practices for SURYAMIT. Plans, tasks, reviews and
+- This constitution supersedes all other practices for SolarX. Plans, tasks, reviews and
   `CLAUDE.md` MUST comply with it.
 - Amendments are made with `/speckit-constitution`, recorded with a Sync Impact Report, and
   versioned semantically: MAJOR for removing or redefining a principle, MINOR for adding a

@@ -10,7 +10,7 @@ import { calculateCentralCfa } from "@/lib/domain/financial";
 import { CFA_EXAMPLE_CAPACITIES, OFFICIAL_REFERENCES } from "@/lib/rules-content";
 import { ESTIMATE_DISCLAIMER } from "@/lib/validation/solar";
 
-export const metadata: Metadata = { title: "Rules & sources · SURYAMIT" };
+export const metadata: Metadata = { title: "Rules & sources · SolarX" };
 
 export default async function RulesPage() {
   const session = await getOptionalSession();
@@ -30,7 +30,7 @@ export default async function RulesPage() {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold text-primary md:text-3xl">Rules &amp; sources</h1>
           <p className="max-w-prose text-muted-foreground">
-            Every estimate in SURYAMIT is calculated by code from the rules below. {activeRuleSet.name}.
+            Every estimate in SolarX is calculated by code from the rules below. {activeRuleSet.name}.
           </p>
         </header>
 

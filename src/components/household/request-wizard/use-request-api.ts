@@ -9,7 +9,7 @@ export type ApiResult = ApiSuccess | ApiFailure;
 const NETWORK: ApiFailure = {
   ok: false,
   status: 0,
-  message: "We couldn't reach SURYAMIT. Check your connection and try again.",
+  message: "We couldn't reach SolarX. Check your connection and try again.",
   details: [],
 };
 

@@ -77,14 +77,14 @@ Vendors, other households and anonymous users therefore read nothing.
 |---|---|---|---|---|---|
 | `cfa_slabs` | `[{0,2,30000},{2,3,18000}]` | ₹ per kW | Residential individual household · All India (central CFA only) | PM Surya Ghar National Portal (https://pmsuryaghar.gov.in/) | illustrative |
 | `cfa_cap` | 78000 | ₹ | same | same | illustrative |
-| `generation_kwh_per_kw_year` | 1400 | kWh/kW/yr | Rooftop PV · India (generic) | SURYAMIT planning assumption — verify with PM Surya Ghar portal calculator (https://pmsuryaghar.gov.in/) | illustrative |
-| `benchmark_cost_per_kw` | 60000 | ₹ per kW | Residential on-grid · India (generic) | SURYAMIT planning assumption — verify with MNRE benchmark cost (https://mnre.gov.in/) | illustrative |
-| `default_tariff_per_kwh` | 7.00 | ₹/kWh | Residential · generic | SURYAMIT planning assumption — verify with the state DISCOM tariff order | illustrative |
+| `generation_kwh_per_kw_year` | 1400 | kWh/kW/yr | Rooftop PV · India (generic) | SolarX planning assumption — verify with PM Surya Ghar portal calculator (https://pmsuryaghar.gov.in/) | illustrative |
+| `benchmark_cost_per_kw` | 60000 | ₹ per kW | Residential on-grid · India (generic) | SolarX planning assumption — verify with MNRE benchmark cost (https://mnre.gov.in/) | illustrative |
+| `default_tariff_per_kwh` | 7.00 | ₹/kWh | Residential · generic | SolarX planning assumption — verify with the state DISCOM tariff order | illustrative |
 | `tariff_bounds_per_kwh` | `{min:3.00,max:12.00}` | ₹/kWh | same | same | illustrative |
-| `self_consumption_share` | 0.70 | ratio | Residential · generic | SURYAMIT planning assumption | illustrative |
-| `export_rate_per_kwh` | 3.00 | ₹/kWh | Residential net billing · generic | SURYAMIT planning assumption — verify DISCOM net-metering/feed-in rate | illustrative |
-| `capacity_range_kw` | `{min:1,max:10}` | kW | Residential | SURYAMIT product rule | illustrative |
-| `capacity_step_kw` | 0.5 | kW | Residential | SURYAMIT product rule | illustrative |
+| `self_consumption_share` | 0.70 | ratio | Residential · generic | SolarX planning assumption | illustrative |
+| `export_rate_per_kwh` | 3.00 | ₹/kWh | Residential net billing · generic | SolarX planning assumption — verify DISCOM net-metering/feed-in rate | illustrative |
+| `capacity_range_kw` | `{min:1,max:10}` | kW | Residential | SolarX product rule | illustrative |
+| `capacity_step_kw` | 0.5 | kW | Residential | SolarX product rule | illustrative |
 
 `effectiveDate` and `retrievedOn` are `null` in v1 and render as "pending verification". A rule may
 be set to `verified` only with non-null `retrievedOn`, `effectiveDate` and an official `sourceUrl`

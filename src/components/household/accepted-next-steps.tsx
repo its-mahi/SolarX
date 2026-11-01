@@ -94,7 +94,7 @@ export function AcceptedNextSteps({ requestId, status }: { requestId: string; st
           <li>Complete net-metering and commissioning, then claim the subsidy on the portal.</li>
         </ol>
         <p className="mt-2 text-xs text-muted-foreground">
-          Subsidy is decided and paid under the official scheme; SURYAMIT does not guarantee it.
+          Subsidy is decided and paid under the official scheme; SolarX does not guarantee it.
         </p>
       </div>
 

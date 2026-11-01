@@ -122,7 +122,7 @@ From the estimate card, a household can try a few alternative capacities (for ex
 
 **Display**
 
-- **FR-023**: Every displayed estimate MUST show its assumptions, rule version, source link (to the rules and sources page), "estimate"/"indicative" wording, an "illustrative" marker for unverified rules, and the disclaimer: "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SURYAMIT does not guarantee them."
+- **FR-023**: Every displayed estimate MUST show its assumptions, rule version, source link (to the rules and sources page), "estimate"/"indicative" wording, an "illustrative" marker for unverified rules, and the disclaimer: "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SolarX does not guarantee them."
 - **FR-024**: The estimate card MUST visually distinguish platform estimates from vendor-confirmed values using a consistent "Estimate" marker that other features reuse.
 - **FR-025**: The estimate card MUST implement loading, empty (no consumption entered), success and error (with retry) states, and MUST be usable on the household dashboard and on the request wizard's review step.
 - **FR-026**: The estimate card MUST show a note when the estimated upfront installation cost exceeds the household's stated budget.

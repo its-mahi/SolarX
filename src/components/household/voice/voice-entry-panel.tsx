@@ -139,7 +139,7 @@ export function VoiceEntryPanel({
       ) : null}
 
       <p className="text-xs text-muted-foreground">
-        Your browser&apos;s speech service turns speech into text and may process the audio. SURYAMIT receives only the
+        Your browser&apos;s speech service turns speech into text and may process the audio. SolarX receives only the
         text.
       </p>
       <div aria-live="polite" role="status" className="sr-only">

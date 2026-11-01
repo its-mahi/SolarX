@@ -10,7 +10,7 @@ by 002 (slots), 005 (quote history) and 006 (`QuoteCard.actionSlot`).
   ("Accepted", "Not selected", "Withdrawn").
 - Dialog (shadcn `AlertDialog`): title "Accept {vendor}'s quote?"; body lists price (vendor-confirmed),
   capacity, estimated net cost (`EstimateBadge` "estimate"), "The other {n} active quote(s) will be
-  declined.", "This cannot be undone in SURYAMIT."; buttons **Cancel** (default focus) and
+  declined.", "This cannot be undone in SolarX."; buttons **Cancel** (default focus) and
   **Accept quote**. Escape/overlay click cancels.
 - On confirm: `POST /api/quotes/:id/accept {confirmed:true}`; confirm button shows a spinner and is
   disabled (no double submit); dialog cannot be dismissed while pending.
@@ -29,7 +29,7 @@ Rendered by 002's `RequestAcceptanceSlot` (request page top, when `accepted`/`cl
   and capacity (vendor-confirmed), acceptance date (`en-IN`).
 - Ordered next steps (FR-013) with the official portal link `https://pmsuryaghar.gov.in/`
   (`rel="noopener noreferrer"`) and the line "Subsidy is decided and paid under the official
-  scheme; SURYAMIT does not guarantee it."
+  scheme; SolarX does not guarantee it."
 - **Mark as closed** button (only when `accepted`) → `CloseRequestDialog`.
 - States: loading skeleton, error with Retry; renders nothing for other statuses.
 

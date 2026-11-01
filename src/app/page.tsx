@@ -34,7 +34,7 @@ export default async function LandingPage() {
               Understand your roof. Compare your options. Choose solar with confidence.
             </h1>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              SURYAMIT helps households under PM Surya Ghar get comparable rooftop-solar quotations from vendors, with
+              SolarX helps households under PM Surya Ghar get comparable rooftop-solar quotations from vendors, with
               transparent, code-calculated estimates.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -74,7 +74,7 @@ export default async function LandingPage() {
           </ol>
         </section>
 
-        <section aria-label="Who SURYAMIT is for" className="mx-auto grid max-w-[1200px] gap-4 px-4 pb-12 md:grid-cols-2">
+        <section aria-label="Who SolarX is for" className="mx-auto grid max-w-[1200px] gap-4 px-4 pb-12 md:grid-cols-2">
           <article className="flex flex-col gap-3 rounded-xl border bg-card p-6">
             <Home aria-hidden className="size-7 text-solar" />
             <h2 className="text-xl font-semibold">For households</h2>

@@ -7,7 +7,7 @@ import { getOptionalSession } from "@/lib/api/auth-guard";
 import { homePathForRole } from "@/lib/auth/redirects";
 import { SignUpForm } from "./sign-up-form";
 
-export const metadata: Metadata = { title: "Create an account · SURYAMIT" };
+export const metadata: Metadata = { title: "Create an account · SolarX" };
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
@@ -20,7 +20,7 @@ export default async function SignUpPage({ searchParams }: Props) {
     <div className="flex min-h-full flex-1 flex-col">
       <PublicHeader signedInRole={session?.profile.role ?? null} />
       <main id="main" className="mx-auto w-full max-w-lg flex-1 px-4 py-10">
-        <h1 className="text-2xl font-bold text-primary">Create your SURYAMIT account</h1>
+        <h1 className="text-2xl font-bold text-primary">Create your SolarX account</h1>
         {session ? (
           <div className="mt-6 flex flex-col gap-4 rounded-xl border bg-card p-6">
             <p>

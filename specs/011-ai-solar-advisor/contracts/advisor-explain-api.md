@@ -72,7 +72,7 @@ Example (demo household, AI used; abbreviated):
       { "code": "estimates_only", "text": "All amounts are indicative estimates based on rule version pm-surya-ghar.v1, not quotes or final prices." },
       { "code": "no_subsidy_guarantee", "text": "Subsidy is not guaranteed. …" },
       { "code": "site_survey_required", "text": "A site survey by the installer is required …" },
-      { "code": "score_not_official", "text": "Comparison score defined by SURYAMIT for guidance only — …" },
+      { "code": "score_not_official", "text": "Comparison score defined by SolarX for guidance only — …" },
       { "code": "ai_may_err", "text": "Explanations may be written by AI and can be imperfect. …" }
     ],
     "facts": [ { "id": "estimate.net_cost", "section": "calculations", "label": "Estimated net cost", "value": 87000, "unit": "inr", "kind": "estimate" } ],

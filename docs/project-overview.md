@@ -1,4 +1,4 @@
-# SURYAMIT — Project Overview and System Architecture
+# SolarX — Project Overview and System Architecture
 
 > **Status**: v1.1 (2026-11-01; v1.0 + contract additions from the 11 feature specs) ·
 > **Scope**: SELC Hackathon MVP (P0 + P1)
@@ -14,9 +14,9 @@
 
 ---
 
-## 1. What SURYAMIT is
+## 1. What SolarX is
 
-SURYAMIT moves an Indian household from "interested in rooftop solar" to "accepted a vendor
+SolarX moves an Indian household from "interested in rooftop solar" to "accepted a vendor
 quotation with confidence". It is a two-sided marketplace (households ↔ vendors) with a
 decision layer on top:
 
@@ -34,7 +34,7 @@ decision layer on top:
 Under PM Surya Ghar Muft Bijli Yojana, adoption is slow and manual: households contact vendors
 one by one, wait for separate site visits, receive quotes as handwritten sheets, PDFs or photos,
 cannot judge fairness, and do not understand subsidy or payback. Vendors cannot efficiently find
-interested households. SURYAMIT replaces this with one workflow.
+interested households. SolarX replaces this with one workflow.
 
 **Judging weights (from the hackathon brief)**:
 

@@ -127,8 +127,8 @@ The response never contains rejection details beyond `ai_status`; issue codes ar
 | `estimates_only` | "All amounts are indicative estimates based on rule version {rule_version}, not quotes or final prices." |
 | `no_subsidy_guarantee` | "Subsidy is not guaranteed. Eligibility and payment are decided through the official PM Surya Ghar process." |
 | `site_survey_required` | "A site survey by the installer is required before final design and price." |
-| `score_not_official` | "Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating." (006 wording) |
-| `ai_may_err` | "Explanations may be written by AI and can be imperfect. All numbers come from SURYAMIT's calculations and the vendors' quotes." |
+| `score_not_official` | "Comparison score defined by SolarX for guidance only — not a government, official or certification rating." (006 wording) |
+| `ai_may_err` | "Explanations may be written by AI and can be imperfect. All numbers come from SolarX's calculations and the vendors' quotes." |
 
 ## 8. Client state (`src/components/advisor/advisor-panel.tsx`)
 

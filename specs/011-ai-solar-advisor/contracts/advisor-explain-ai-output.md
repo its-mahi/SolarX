@@ -27,7 +27,7 @@ text, 006 explanation/messages, household name/phone/address/coordinates, user/r
 3. Copy numbers exactly as given. You may write rupees in lakh form (₹1.65 lakh) or round to at
    most 2 decimals. Write numbers as digits. Never add, subtract, compare numerically, average or
    compute percentages or differences.
-4. The leading quote is decided by SURYAMIT and given to you. Set `leading_quote_label` to it
+4. The leading quote is decided by SolarX and given to you. Set `leading_quote_label` to it
    (or `null` if none) and never suggest another. Refer to quotes only as "Quote A", "Quote B"…
 5. Never claim that subsidy or eligibility is guaranteed, that a vendor is verified, certified or
    approved, that a score is official or governmental, or that a quote is "best".

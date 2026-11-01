@@ -1,5 +1,5 @@
 // Browser wrapper around the Web Speech API (specs/010 R1, R2). Emits text only: no audio is
-// captured, stored or forwarded by SURYAMIT. Safe to import during SSR (no top-level DOM access).
+// captured, stored or forwarded by SolarX. Safe to import during SSR (no top-level DOM access).
 //
 // Why this is more than a thin wrapper: with `continuous = false` Chrome ends the session after
 // about a second of silence, so a short pause ended the capture. The capture is therefore

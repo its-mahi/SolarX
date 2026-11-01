@@ -15,7 +15,7 @@ describe("coordinates", () => {
     for (const [latitude, longitude] of [[6.49, 78], [37.51, 78], [17, 67.99], [17, 97.51]]) {
       const r = createRequestSchema.safeParse({ latitude, longitude });
       expect(r.success).toBe(false);
-      if (!r.success) expect(r.error.issues[0].message).toBe("SURYAMIT currently supports locations in India");
+      if (!r.success) expect(r.error.issues[0].message).toBe("SolarX currently supports locations in India");
     }
   });
 

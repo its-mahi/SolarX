@@ -65,7 +65,7 @@ Vendor fields sent with `role: "household"` → `VALIDATION_FAILED` (strict sche
 ```http
 POST /api/auth/signup
 Content-Type: application/json
-Origin: https://suryamit.example
+Origin: https://solarx.example
 
 { "role": "vendor", "name": "Ravi Kumar", "email": "ravi@example.com", "password": "solar-2026!",
   "company_name": "Ravi Solar Works", "service_area": "Warangal, Telangana", "service_radius_km": 40 }

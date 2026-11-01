@@ -1,4 +1,4 @@
-# SURYAMIT --- AI-Powered Rooftop Solar Marketplace
+# SolarX --- AI-Powered Rooftop Solar Marketplace
 
 > **Project plan for the SELC Hackathon**\
 > Product concept: AI-powered solar decision intelligence for Indian
@@ -8,7 +8,7 @@
 
 ## 1. Executive Summary
 
-**SURYAMIT** helps households move from rooftop-solar interest to an
+**SolarX** helps households move from rooftop-solar interest to an
 informed vendor decision. Households publish solar requirements, vendors
 discover requests and submit quotations, and an AI-assisted decision
 layer helps homeowners understand rooftop constraints, compare
@@ -48,7 +48,7 @@ PM Surya Ghar Muft Bijli Yojana as slow and manual:
 -   Subsidy and payback estimates are difficult for many households to
     understand.
 
-SURYAMIT addresses this by providing one workflow for household
+SolarX addresses this by providing one workflow for household
 requests, vendor quotations, and AI-assisted decisions.
 
 ## 3. Product Goals and Non-Goals
@@ -236,7 +236,7 @@ flow to add optional AI features.
 
 ### Visual identity
 
--   Product name: **SURYAMIT**
+-   Product name: **SolarX**
 -   Style: trustworthy, modern energy-tech SaaS.
 -   Primary: deep forest green.
 -   Accent: solar green.
@@ -927,7 +927,7 @@ and subsidy benefits."
 
 ### 0:30--0:50 --- Product
 
-"We built SURYAMIT: an AI-powered solar marketplace that connects
+"We built SolarX: an AI-powered solar marketplace that connects
 household requests and vendor quotations with transparent decision
 support."
 
@@ -955,7 +955,7 @@ limiting, and state-wide geospatial search.
 
 ### 2:45--3:00 --- Impact
 
-"SURYAMIT does not just help households find installers. It helps them
+"SolarX does not just help households find installers. It helps them
 make more informed, transparent, and confident solar adoption
 decisions."
 
@@ -1027,7 +1027,7 @@ The MVP is demo-ready when:
 
 ## Final Product Positioning
 
-**SURYAMIT --- Your rooftop. Your solar future. Your smartest
+**SolarX --- Your rooftop. Your solar future. Your smartest
 decision.**
 
 Build the complete marketplace workflow first. Make the financial engine

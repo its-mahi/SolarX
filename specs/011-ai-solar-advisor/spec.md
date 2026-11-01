@@ -17,7 +17,7 @@ advisor. It shows three sections. **What I observed**: the roof items noticed in
 (e.g. water tank, staircase room), what they might mean, and that a single photo has limits and
 a site survey is required. **What the calculations show**: the indicative capacity, estimated
 installation cost, estimated central subsidy, estimated net cost, estimated yearly savings and
-payback, with the rule version. **What I recommend**: which quote has the highest SURYAMIT
+payback, with the rule version. **What I recommend**: which quote has the highest SolarX
 comparison score, why (score parts), what is missing in each quote, and the next steps. Every
 point shows the stored values it is based on. Disclaimers are always visible. This summary works
 even when no AI service is available, because it is assembled from the stored results by a
@@ -223,9 +223,9 @@ correct status, select it and land on the advisor for that request.
 - **FR-019**: The advisor MUST always show these disclaimers, regardless of AI or standard
   summary: values are estimates/indicative and based on the stated rule version; subsidy is not
   guaranteed and eligibility is decided through the official scheme process; a site survey by the
-  installer is required before final design and price; comparison scores are defined by SURYAMIT
+  installer is required before final design and price; comparison scores are defined by SolarX
   for guidance and are not a government, official or certification rating; AI-written text may be
-  imperfect, and all numbers come from SURYAMIT's calculations.
+  imperfect, and all numbers come from SolarX's calculations.
 - **FR-020**: Platform estimates MUST be visibly distinguished from vendor-stated values in the
   evidence, and AI confidence levels from the roof assessment MUST be shown as words with a
   qualifier, never as a guarantee.

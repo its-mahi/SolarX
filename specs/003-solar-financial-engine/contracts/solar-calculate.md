@@ -53,7 +53,7 @@ rule set's `capacity_range_kw` (1–10 in v1).
       },
       "updatedAt": "2026-11-01T10:00:00Z"
     },
-    "disclaimer": "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SURYAMIT does not guarantee them."
+    "disclaimer": "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SolarX does not guarantee them."
   }
 }
 ```

@@ -1,4 +1,4 @@
--- SURYAMIT demo seed. Applied by `npm run db:reset` (supabase db reset).
+-- SolarX demo seed. Applied by `npm run db:reset` (supabase db reset).
 -- All people, vendors and data below are FICTIONAL and labelled "Demo" in the UI.
 -- Sections are appended in feature order; keep each feature inside its own section.
 

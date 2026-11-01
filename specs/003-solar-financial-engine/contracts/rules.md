@@ -42,7 +42,7 @@ No body, no query parameters. Any query parameters are ignored.
       { "title": "Ministry of New and Renewable Energy", "url": "https://mnre.gov.in/" },
       { "title": "MyScheme", "url": "https://www.myscheme.gov.in/" }
     ],
-    "disclaimer": "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SURYAMIT does not guarantee them."
+    "disclaimer": "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SolarX does not guarantee them."
   }
 }
 ```

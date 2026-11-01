@@ -24,7 +24,7 @@ ownership → load quotes → `normalizeQuote` → `toScoringInput` → `scoreQu
     "requestStatus": "quoted",
     "scoringVersion": "scoring.v1",
     "weights": { "price": 30, "technical": 25, "warranty": 20, "completeness": 15, "timeline": 10 },
-    "disclaimer": "Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating.",
+    "disclaimer": "Comparison score defined by SolarX for guidance only — not a government, official or certification rating.",
     "ruleVersion": "pm-surya-ghar.v1",
     "compared": [
       {

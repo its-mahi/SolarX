@@ -4,7 +4,7 @@ import { inrAmountSchema, trimmedText, uuidSchema } from "./common";
 import { requestStatusSchema } from "./enums";
 
 export const INDIA_BOUNDS = { latMin: 6.5, latMax: 37.5, lngMin: 68, lngMax: 97.5 } as const;
-const INDIA_MESSAGE = "SURYAMIT currently supports locations in India";
+const INDIA_MESSAGE = "SolarX currently supports locations in India";
 
 export const ROOF_PHOTO_MAX_BYTES = 5 * 1024 * 1024;
 export const ROOF_PHOTO_MIME_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;

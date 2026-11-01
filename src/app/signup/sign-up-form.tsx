@@ -71,7 +71,7 @@ export function SignUpForm({ initialRole }: { initialRole: Role }) {
       router.replace(json.data.redirect_to);
       router.refresh();
     } catch {
-      setErrors({ form: "We couldn't reach SURYAMIT. Check your connection and try again." });
+      setErrors({ form: "We couldn't reach SolarX. Check your connection and try again." });
     } finally {
       setSubmitting(false);
     }

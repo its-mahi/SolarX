@@ -6,7 +6,7 @@ const PIN_SVG =
 
 export const pinIcon = L.divIcon({
   html: PIN_SVG,
-  className: "suryamit-pin",
+  className: "solarx-pin",
   iconSize: [36, 36],
   iconAnchor: [18, 34],
 });

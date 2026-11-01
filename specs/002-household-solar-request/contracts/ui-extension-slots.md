@@ -26,7 +26,7 @@ failures show an inline `ErrorState`/toast with retry and keep local values. A `
 redirects to the read-only request page with "This request has been published and can no longer
 be edited".
 
-AI consent copy: "Allow SURYAMIT to send this roof photo to an AI service to describe visible
+AI consent copy: "Allow SolarX to send this roof photo to an AI service to describe visible
 obstructions (optional). The photo is only used for this analysis. You can withdraw consent at
 any time."
 

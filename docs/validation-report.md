@@ -1,4 +1,4 @@
-# SURYAMIT — Documentation Validation Report
+# SolarX — Documentation Validation Report
 
 > **Date**: 2026-11-01 · **Phase**: 8 (documentation validation) · **Scope**: constitution v1.0.0,
 > project overview v1.1, 11 feature specs · **Result**: ✅ ready for `/speckit-analyze` and

@@ -1,4 +1,4 @@
-// Canonical SURYAMIT vocabulary (overview §7). Later features import these; never re-declare.
+// Canonical SolarX vocabulary (overview §7). Later features import these; never re-declare.
 import { z } from "zod";
 
 export const ROLES = ["household", "vendor"] as const;

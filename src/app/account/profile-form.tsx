@@ -59,7 +59,7 @@ export function ProfileForm({ role, initial }: { role: Role; initial: Values }) 
       toast.success("Your changes are saved.");
       router.refresh();
     } catch {
-      setErrors({ form: "We couldn't reach SURYAMIT. Check your connection and try again." });
+      setErrors({ form: "We couldn't reach SolarX. Check your connection and try again." });
     } finally {
       setSaving(false);
     }

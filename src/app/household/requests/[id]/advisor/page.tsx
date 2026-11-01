@@ -18,7 +18,7 @@ export default async function AdvisorPage({ params }: { params: Promise<{ id: st
       </Link>
       <h1 className="text-2xl font-semibold">Solar advisor</h1>
       <p className="text-sm text-muted-foreground">
-        A plain-language summary of your roof, your estimate and your quotes. Every number comes from SURYAMIT&apos;s calculations.
+        A plain-language summary of your roof, your estimate and your quotes. Every number comes from SolarX&apos;s calculations.
       </p>
       <AdvisorPanel requestId={id} />
     </div>

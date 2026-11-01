@@ -49,7 +49,7 @@ For each quote the household sees a list of missing items (recommended informati
 
 ### User Story 3 - Understand a transparent comparison score (Priority: P1)
 
-Each compared quote receives a score out of 100 computed by code from five weighted parts — price competitiveness (30), technical specification (25), warranty (20), quote completeness (15) and installation timeline (10). The household can expand a breakdown showing each part's points, the reason for those points and every missing-data penalty (points not earned because a value was unknown). Quotes are ordered by score using a fixed tie-break rule, and the screen always states: "Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating."
+Each compared quote receives a score out of 100 computed by code from five weighted parts — price competitiveness (30), technical specification (25), warranty (20), quote completeness (15) and installation timeline (10). The household can expand a breakdown showing each part's points, the reason for those points and every missing-data penalty (points not earned because a value was unknown). Quotes are ordered by score using a fixed tie-break rule, and the screen always states: "Comparison score defined by SolarX for guidance only — not a government, official or certification rating."
 
 **Why this priority**: The code-based, explainable recommendation is a P0 definition-of-done item and a judged differentiator; it must be immune to anything a vendor writes in free text (verified later by feature 009).
 
@@ -149,7 +149,7 @@ Only the household that owns a request can list, compare or see reviews of its q
 **Display**
 
 - **FR-025**: The comparison screen MUST show, per quote: rank position, total score, an expandable breakdown (part points, reasons, penalties), missing items, flags, the normalized fields, the "estimate" vs "vendor-confirmed" markers and the explanation sentence.
-- **FR-026**: The comparison screen MUST always display: "Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating," the scoring version, and the weights.
+- **FR-026**: The comparison screen MUST always display: "Comparison score defined by SolarX for guidance only — not a government, official or certification rating," the scoring version, and the weights.
 - **FR-027**: The screen MUST NOT label any quote "best", "verified" or "recommended by the government"; the top quote MAY be labelled "Highest comparison score".
 - **FR-028**: The screen MUST implement loading, empty (no quotes / no active quotes), success and error-with-retry states, MUST render vendor free text as plain text only, and MUST leave a visible place for the accept action provided by feature 007.
 - **FR-029**: Errors MUST use the shared error format without exposing stack traces, database messages or internal details.

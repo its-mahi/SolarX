@@ -3,7 +3,7 @@ import { z } from "zod";
 import { uuidSchema } from "./common";
 
 export const ESTIMATE_DISCLAIMER =
-  "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SURYAMIT does not guarantee them.";
+  "Estimates only. Subsidy eligibility, approval and payment are decided under the official PM Surya Ghar scheme; SolarX does not guarantee them.";
 
 export const estimateInputsSchema = z.strictObject({
   monthlyUnits: z.number("Enter a number").gt(0, "Must be greater than 0").lte(10000, "Must be 10,000 or less"),

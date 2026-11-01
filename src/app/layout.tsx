@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SURYAMIT",
+  title: "SolarX",
   description:
     "Understand your roof. Compare your options. Choose solar with confidence.",
 };

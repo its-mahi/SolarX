@@ -16,6 +16,6 @@ describe("scoring.v1 config", () => {
     expect(RECOMMENDED_ITEMS).toHaveLength(14);
     expect(RECOMMENDED_ITEMS[0]).toBe("panelBrand");
     expect(RECOMMENDED_ITEMS[13]).toBe("documentStated".replace("documentStated", "documentationStated"));
-    expect(c.disclaimer).toBe("Comparison score defined by SURYAMIT for guidance only — not a government, official or certification rating.");
+    expect(c.disclaimer).toBe("Comparison score defined by SolarX for guidance only — not a government, official or certification rating.");
   });
 });

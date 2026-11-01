@@ -15,7 +15,7 @@
 A household member on the "electricity and budget" step of the solar request wizard selects
 Hindi (or English), taps the microphone and says, for example, "Mera mahine ka bill do hazaar
 rupaye aata hai, 250 unit, budget dedh lakh, teen kilowatt chahiye". The words they said appear
-on screen. SURYAMIT then shows a review card listing the values it understood: monthly units
+on screen. SolarX then shows a review card listing the values it understood: monthly units
 250, monthly bill ₹2,000, budget ₹1,50,000, preferred capacity 3 kW. Each value is editable.
 When the household chooses "Use these values", the values are copied into the step's normal
 form fields. Nothing is saved until the household continues through the wizard as usual.
@@ -90,9 +90,9 @@ household completes the step by typing. With the AI service disabled, speak "250
 ### User Story 3 - Gujarati, language fallback and transcript correction (Priority: P2)
 
 A household that prefers Gujarati chooses it and speaks "મારું બિલ બે હજાર રૂપિયા, બજેટ દોઢ
-લાખ". If the browser cannot recognize Gujarati, SURYAMIT says so and switches to English so
+લાખ". If the browser cannot recognize Gujarati, SolarX says so and switches to English so
 they can try again. Before interpretation, the household can read the recognized text, correct
-a misheard word (or type a sentence themselves) and ask SURYAMIT to interpret it again.
+a misheard word (or type a sentence themselves) and ask SolarX to interpret it again.
 
 **Why this priority**: Gujarati is a stated target language, but browser support varies
 (overview §13.4). Transcript correction improves accuracy but the core value is delivered by
@@ -222,7 +222,7 @@ re-interpret, confirming the corrected value appears.
 
 **Privacy and access**
 
-- **FR-021**: No audio MUST be sent to or stored by SURYAMIT; only the text transcript is sent
+- **FR-021**: No audio MUST be sent to or stored by SolarX; only the text transcript is sent
   for interpretation. The voice control MUST show a one-line note that the browser's own speech
   service converts speech to text and may process the audio.
 - **FR-022**: The transcript MUST NOT be stored by the platform or written to logs; it exists
@@ -290,8 +290,8 @@ re-interpret, confirming the corrected value appears.
   which comfortably fits a description of four values.
 - The AI service time limit for this feature is 10 seconds, after which the without-AI result
   is used.
-- Speech-to-text runs in the user's browser; SURYAMIT receives only text. Some browsers send
-  audio to their own speech service; SURYAMIT discloses this but cannot control it.
+- Speech-to-text runs in the user's browser; SolarX receives only text. Some browsers send
+  audio to their own speech service; SolarX discloses this but cannot control it.
 - Voice input is only offered while the request is an editable draft, because only drafts can be
   edited (overview §9 rule 1).
 - **Dependencies**: `001-platform-foundation-auth` (sign-in, household role, shared error format,

@@ -51,7 +51,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* SURYAMIT theme tokens (research R-11). Text colours meet WCAG AA on --background. */
+/* SolarX theme tokens (research R-11). Text colours meet WCAG AA on --background. */
 :root {
   --background: #faf8f3; /* warm off-white */
   --foreground: #0f1f17;
