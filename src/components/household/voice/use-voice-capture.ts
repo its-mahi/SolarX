@@ -32,7 +32,9 @@ export function useVoiceCapture() {
     if (stored !== DEFAULT_VOICE_LANGUAGE) dispatch({ type: "set_language", language: stored });
     if (!isSpeechRecognitionSupported()) dispatch({ type: "unsupported" });
     return () => {
+      // Releases the microphone and silences the callbacks of a capture that is still running.
       session.current?.abort();
+      session.current = null;
       abort.current?.abort();
     };
   }, []);
@@ -47,19 +49,23 @@ export function useVoiceCapture() {
   }, []);
 
   const start = useCallback(() => {
+    session.current?.abort(); // never keep two microphones open
+    session.current = null;
     dispatch({ type: "start_listening" });
+    // One capture spans the browser's own session restarts (pauses, network hiccups): the wrapper
+    // keeps the text so far, reports it through onInterim and ends with a single final or error.
+    // If start() throws, the wrapper has already reported it through onError.
+    // The wrapper calls onEnd exactly once per capture (also from abort), so it cannot clear a
+    // newer capture's reference.
     session.current = startRecognition({
       lang: stateRef.current.language,
-      onInterim: (text) => dispatch({ type: "interim", text }),
+      onInterim: (text) => dispatch({ type: "interim", text: text.slice(0, VOICE_TRANSCRIPT_MAX_CHARS) }),
       onFinal: (text) => dispatch({ type: "final", text: text.slice(0, VOICE_TRANSCRIPT_MAX_CHARS) }),
       onError: (kind) => dispatch({ type: "recognition_error", kind }),
       onEnd: () => {
         session.current = null;
       },
     });
-    if (!session.current && stateRef.current.supported) {
-      // start() threw synchronously; onError already reported it.
-    }
   }, []);
 
   const stop = useCallback(() => session.current?.stop(), []);

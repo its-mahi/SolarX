@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { checkFieldValue } from "@/lib/domain/voice/field-bounds";
 import { isValueGrounded } from "@/lib/domain/voice/grounding";
-import { hasSpeechRecognition, mapRecognitionError, resolveVoiceLanguage } from "@/lib/voice/language-support";
+import {
+  hasSpeechRecognition,
+  isTransientRecognitionError,
+  mapRecognitionError,
+  resolveVoiceLanguage,
+} from "@/lib/voice/language-support";
 import { voiceFieldResultSchema, voiceParseRequestSchema } from "@/lib/validation/voice";
 
 describe("checkFieldValue", () => {
@@ -39,6 +44,11 @@ describe("language support", () => {
     expect(mapRecognitionError("language-not-supported")).toBe("language_unsupported");
     expect(mapRecognitionError("network")).toBe("recognition");
     expect(mapRecognitionError(undefined)).toBe("recognition");
+  });
+  it("treats only silence, network and abort as transient (restartable) recognition errors", () => {
+    for (const code of ["no-speech", "network", "aborted"]) expect(isTransientRecognitionError(code)).toBe(true);
+    for (const code of ["not-allowed", "service-not-allowed", "audio-capture", "language-not-supported", "bad-grammar", undefined])
+      expect(isTransientRecognitionError(code)).toBe(false);
   });
   it("resolves languages", () => {
     expect(resolveVoiceLanguage("gu-IN")).toBe("gu-IN");

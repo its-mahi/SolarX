@@ -79,7 +79,8 @@ export function VoiceEntryPanel({
 
       {listening ? (
         <p className="text-sm font-medium">
-          <span aria-hidden>● </span>Listening… speak now (stops after 30 seconds).
+          <span aria-hidden>● </span>Listening… speak now. You can pause; press Stop when you are done (it stops by
+          itself after 30 seconds).
         </p>
       ) : null}
       {busy ? <p className="text-sm">Interpreting what you said…</p> : null}

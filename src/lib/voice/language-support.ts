@@ -43,3 +43,12 @@ export function mapRecognitionError(code: unknown): RecognitionErrorKind {
       return "recognition";
   }
 }
+
+/**
+ * Errors after which the browser has merely ended its own session (silence, a network hiccup, a
+ * focus change) and a fresh session can carry on. Everything else (permission, microphone,
+ * language, unknown) is a real failure that must stop the capture.
+ */
+export function isTransientRecognitionError(code: unknown): boolean {
+  return code === "no-speech" || code === "network" || code === "aborted";
+}

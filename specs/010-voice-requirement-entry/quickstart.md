@@ -40,6 +40,12 @@ All AI calls are mocked in tests (no key required). Expected: all green.
 5. Reload the page **without** saving the step: the stored request still has its old values
    (nothing auto-saved). Repeat and use the wizard's normal save: values persist.
 
+**Pause check (Chrome)**: tap the microphone, say **"two hundred fifty units"**, then stay silent
+for **3 seconds** (try 6 as well), then say **"and budget one lakh fifty thousand"** and press
+**Stop listening**. Expected: the live text keeps showing through the pause, the listening
+indicator never switches off, and the final text contains both halves in one transcript. The
+capture ends only on Stop, after 30 seconds, or on a real error (for example blocked microphone).
+
 ### B. Only one value said (US1, never guess)
 
 Say **"budget 1,50,000"**. Expected: budget ₹1,50,000; the other three show **Not heard**;

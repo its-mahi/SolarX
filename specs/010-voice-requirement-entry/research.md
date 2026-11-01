@@ -10,10 +10,27 @@ Each decision follows the format Decision / Rationale / Alternatives considered.
 
 **Decision**: Use the browser Web Speech API (`SpeechRecognition`, falling back to the
 `webkitSpeechRecognition` constructor) on the client, with `lang` set to `hi-IN`, `gu-IN` or
-`en-IN`, `interimResults = true` (live text while speaking), `continuous = false`,
+`en-IN`, `interimResults = true` (live text while speaking), `continuous = true`,
 `maxAlternatives = 1`. Only the final transcript string is sent to the server. A thin wrapper
 (`src/lib/voice/speech-recognition.ts`) owns feature detection, start/stop, a 30 s hard stop
-timer and the mapping of recognition error events to the panel's error states.
+timer, transparent restarts (below) and the mapping of recognition error events to the panel's
+error states.
+
+> **Amended (pause fix)**: the original decision was `continuous = false`. With it Chrome ends
+> the session after about a second of silence and the wrapper treated that `end` as the end of
+> the capture, so a short pause switched live transcription off and the user had to start over.
+> The capture is now `continuous = true` and spans browser sessions: if the browser still ends a
+> session by itself (silence, `network`, `aborted`) while the user has not pressed Stop, the
+> wrapper starts a new `SpeechRecognition` after a back-off (250 ms, doubling, max 2 s) and keeps
+> the text so far (finals plus unfinalised interim words). It gives up after 5 consecutive
+> restarts without new speech (the count resets whenever speech arrives) and then ends with the
+> text it has. The capture ends only on Stop, the 30 s limit (counted over the whole capture, not
+> per session), the 500-character limit, or a real error (`not-allowed`, `service-not-allowed`,
+> `audio-capture`, `language-not-supported`, unknown). Stop and unmount always `abort()` the
+> recogniser; a safety timer releases the microphone if the browser never fires `end` after
+> `stop()`. FR-006's "stop automatically after silence" therefore applies to silence before any
+> speech (the browser's `no-speech`); silence after speech is a pause and the capture ends at
+> Stop or at 30 s.
 
 **Rationale**: Fixed by the constitution stack and overview §10. Zero server cost, no audio
 handling in SURYAMIT (FR-021, SC-007), no new dependency. Interim results give the user
@@ -35,9 +52,10 @@ SURYAMIT cannot prevent this, so the panel shows a one-line disclosure (FR-021).
 | No recognition API | neither `window.SpeechRecognition` nor `window.webkitSpeechRecognition` exists (checked after mount, never during SSR) | `unsupported`: hide mic, show "Voice input isn't available in this browser — type your values" (FR-003) |
 | Language not supported | recognition `error` event with `error === "language-not-supported"` | switch language to `en-IN`, show notice, return to `idle` (FR-004) |
 | Microphone denied | `error === "not-allowed"` or `"service-not-allowed"` | `error:permission` with how-to-allow text (FR-005) |
-| No speech | `error === "no-speech"`, or `end` with an empty final transcript | `empty:no-speech` (FR-007) |
+| No speech | `error === "no-speech"` before anything was heard, or Stop/limit with an empty transcript (after speech, `no-speech` is just a pause: see R1 amendment) | `empty:no-speech` (FR-007) |
 | No microphone | `error === "audio-capture"` | `error:no-mic` |
-| Network / other | `error === "network"` / `"aborted"` / anything else | `error:recognition` with retry |
+| Network / aborted | `error === "network"` / `"aborted"`: the session is restarted transparently; only after 5 restarts in a row without new speech does it end | text so far kept; with no text at all: `error:recognition` with retry |
+| Other | any other error code | `error:recognition` with retry |
 | Too long | 30 s timer fires | call `stop()`; use whatever final text exists |
 
 **Rationale**: The Web Speech API exposes no "supported languages" list, so the error event is

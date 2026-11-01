@@ -6,7 +6,7 @@ class Fake {
   static last: Fake;
   lang = "";
   interimResults = false;
-  continuous = true;
+  continuous = false;
   maxAlternatives = 0;
   onresult: ((e: any) => void) | null = null;
   onerror: ((e: any) => void) | null = null;
@@ -41,12 +41,14 @@ describe("speech recognition wrapper", () => {
 
   it("configures the recogniser and emits interim then final text", () => {
     const h = handlers();
-    startRecognition({ lang: "gu-IN", scope, ...h });
-    expect(Fake.last).toMatchObject({ lang: "gu-IN", interimResults: true, continuous: false, maxAlternatives: 1 });
+    const session = startRecognition({ lang: "gu-IN", scope, ...h });
+    // continuous: a non-continuous session is ended by the browser after ~1 s of silence.
+    expect(Fake.last).toMatchObject({ lang: "gu-IN", interimResults: true, continuous: true, maxAlternatives: 1 });
     Fake.last.onresult!(result("do hazaar", false));
     expect(h.onInterim).toHaveBeenCalledWith("do hazaar");
     Fake.last.onresult!(result("do hazaar", true));
-    Fake.last.onend!();
+    expect(h.onFinal).not.toHaveBeenCalled();
+    session!.stop();
     expect(h.onFinal).toHaveBeenCalledWith("do hazaar");
     expect(h.onEnd).toHaveBeenCalledTimes(1);
   });
@@ -56,14 +58,14 @@ describe("speech recognition wrapper", () => {
     ["service-not-allowed", "permission"],
     ["no-speech", "no_speech"],
     ["audio-capture", "no_mic"],
-    ["network", "recognition"],
-    ["aborted", "recognition"],
+    ["bad-grammar", "recognition"],
     ["language-not-supported", "language_unsupported"],
   ])("maps %s to %s", (code, kind) => {
     const h = handlers();
     startRecognition({ lang: "hi-IN", scope, ...h });
-    Fake.last.onerror!({ error: code });
-    Fake.last.onend!();
+    const rec = Fake.last;
+    rec.onerror!({ error: code });
+    rec.onend?.(); // detached after a real error: a late `end` is ignored
     expect(h.onError).toHaveBeenCalledTimes(1);
     expect(h.onError).toHaveBeenCalledWith(kind);
     expect(h.onFinal).not.toHaveBeenCalled();
@@ -71,8 +73,8 @@ describe("speech recognition wrapper", () => {
 
   it("an empty final result is no_speech", () => {
     const h = handlers();
-    startRecognition({ lang: "hi-IN", scope, ...h });
-    Fake.last.onend!();
+    const session = startRecognition({ lang: "hi-IN", scope, ...h });
+    session!.stop();
     expect(h.onError).toHaveBeenCalledWith("no_speech");
   });
 
