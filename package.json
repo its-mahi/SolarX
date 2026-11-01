@@ -14,7 +14,9 @@
     "test:injection": "vitest run --project integration tests/integration/quotes/injection-invariance.test.ts",
     "test:e2e": "playwright test",
     "db:reset": "supabase db reset",
-    "seed:storage": "node --env-file=.env.local scripts/seed-demo-storage.ts"
+    "seed:storage": "node --env-file=.env.local scripts/seed-demo-storage.ts",
+    "build:test": "node scripts/run-with-env.mjs .env.test ./node_modules/next/dist/bin/next build",
+    "start:test": "node scripts/run-with-env.mjs .env.test ./node_modules/next/dist/bin/next start -p 3002 -H 127.0.0.1"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
