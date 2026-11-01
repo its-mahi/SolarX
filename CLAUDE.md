@@ -3,7 +3,7 @@
 AI-assisted rooftop-solar marketplace for Indian households (PM Surya Ghar Muft Bijli Yojana).
 Households publish a solar request, vendors submit quotations, and households compare them with
 code-calculated estimates and scores and then accept one. Scope: SELC Hackathon MVP
-(4 people, 5 hours). **Status: documentation complete; no application code yet.**
+(4 people, 5 hours). **Status: feature 001 implemented; 002–011 specified, not built.**
 
 ## Read before doing anything
 
@@ -100,6 +100,28 @@ tests/                unit/ integration/ e2e/ fixtures/
 - **Demo data** is fictional and labelled "Demo" (Sharma Residence; SunRise Energy, GreenVolt
   Solar, SolarTech Solutions; one injected quote for the injection test).
 - Comments only where intent is not obvious; small single-purpose modules.
+
+## Shared hosted Supabase (team environment)
+
+- Project `suryamit` (ref `pcgubmdiewaiitvvnxhd`, region `ap-south-1`), org `SURYAMIT`.
+  Dashboard: https://supabase.com/dashboard/project/pcgubmdiewaiitvvnxhd
+- To connect, copy the values Bhavin shares (`.env.team`) into your `.env.local`. The
+  service-role key is shared privately and never committed.
+- **Schema changes**: add a migration in `supabase/migrations/`, test it locally
+  (`npx supabase start` → `npm run db:reset`), then the database owner applies it with
+  `npx supabase db push --linked`. Never edit the hosted schema in the dashboard.
+- **Automated tests run against local Supabase only.** Integration tests create and delete
+  users; do not point them at the shared project.
+
+## Next.js 16 and local setup notes (learned in 001)
+
+- `cacheComponents` is **off** (research R-14). Pages read the session with `getOptionalSession()` /
+  `requirePageRole()`; never wrap those in a `try/catch` that swallows Next.js internal errors
+  (use `unstable_rethrow`).
+- Middleware is called **Proxy** in Next.js 16: `src/proxy.ts`.
+- Sign-out must use `signOut({ scope: "local" })`: demo accounts are shared.
+- Tests call `http://127.0.0.1:3000` (`TEST_BASE_URL` overrides), not `localhost`.
+- Read `node_modules/next/dist/docs/` before using a Next.js API you have not used in this repo (`AGENTS.md`).
 
 ## Spec Kit workflow
 

@@ -168,3 +168,19 @@ to make.
   `toStatus`, `code`, `demoKey`, `reason`).
 - **Rationale**: Constitution IV logging rule with zero dependencies; Vercel captures stdout.
 - **Alternatives considered**: pino/winston (unneeded dependency for the MVP).
+
+## R-14 Next.js 16 specifics found at implementation time
+
+- **Decision**: (1) Turn off `cacheComponents` (and `partialPrefetching`, which requires it) in
+  `next.config.ts` and use the previous caching model. (2) Use `src/proxy.ts`, because Next.js 16
+  renamed Middleware to Proxy (anticipated in R-02); `src/lib/supabase/middleware.ts` keeps the
+  `updateSession()` helper. (3) `getOptionalSession()` reads `cookies()` before its `try` and
+  re-throws Next.js internal errors with `unstable_rethrow`, so session pages are never prerendered.
+- **Rationale**: With Cache Components, reading `cookies()` outside `<Suspense>` is a build error,
+  and every SURYAMIT page reads the session. Turning it off keeps all 11 features simple
+  (constitution VIII). Catching the internal dynamic-rendering error had made `/household`,
+  `/vendor`, `/account` and `/` static at build time. That is now fixed, and the build output
+  shows them as dynamic (ƒ).
+- **Alternatives considered**: Keeping Cache Components with `<Suspense>` around every
+  session read (more code in every feature for no MVP benefit); `export const dynamic =
+  "force-dynamic"` on each page (easy to forget in later features).
