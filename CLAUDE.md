@@ -3,7 +3,7 @@
 AI-assisted rooftop-solar marketplace for Indian households (PM Surya Ghar Muft Bijli Yojana).
 Households publish a solar request, vendors submit quotations, and households compare them with
 code-calculated estimates and scores and then accept one. Scope: SELC Hackathon MVP
-(4 people, 5 hours). **Status: feature 001 implemented; 002–011 specified, not built.**
+(4 people, 5 hours). **Status: feature 001 implemented; 003 financial engine built except the parts that need 002 (saving, EstimateCard); 002, 004–011 specified, not built.**
 
 ## Read before doing anything
 
