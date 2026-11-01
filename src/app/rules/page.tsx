@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ExternalLink, TriangleAlert } from "lucide-react";
 import { activeRuleSet } from "@/config/rules";
 import { PublicHeader } from "@/components/layout/public-header";
+import { SiteHeader } from "@/components/layout/site-header";
+import { getOptionalSession } from "@/lib/api/auth-guard";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { RulesTable } from "@/components/shared/rules-table";
 import { calculateCentralCfa } from "@/lib/domain/financial";
@@ -10,14 +12,21 @@ import { ESTIMATE_DISCLAIMER } from "@/lib/validation/solar";
 
 export const metadata: Metadata = { title: "Rules & sources · SURYAMIT" };
 
-export default function RulesPage() {
+export default async function RulesPage() {
+  const session = await getOptionalSession();
   const rules = Object.values(activeRuleSet.rules);
   const anyIllustrative = rules.some((r) => r.verification === "illustrative");
   const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
-      <PublicHeader />
+      {session ? (
+        <SiteHeader
+          profile={{ name: session.profile.name, role: session.profile.role, is_demo: session.profile.is_demo }}
+        />
+      ) : (
+        <PublicHeader />
+      )}
       <main id="main" className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col gap-8 px-4 py-8">
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold text-primary md:text-3xl">Rules &amp; sources</h1>

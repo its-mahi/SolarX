@@ -40,7 +40,7 @@ export function SiteHeader({ profile }: Props) {
   });
 
   return (
-    <header className="border-b bg-card">
+    <header className="sticky top-0 z-40 border-b bg-card">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-3 px-4">
         <div className="flex min-w-0 items-center gap-3">
           <BrandLogo href={homePathForRole(profile.role)} />
